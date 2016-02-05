@@ -2,8 +2,8 @@ var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-cssnano');
-var concatCss = require('gulp-concat-css');
 var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
 
 var paths = {
   css: ['app/**/*.scss'],
@@ -16,8 +16,8 @@ gulp.task('build:css', function() {
   gulp.src('app/scss/application.scss')
     .pipe(sourcemaps.init())
     .pipe(sass())
+    .pipe(autoprefixer())
     .pipe(gulp.dest('app/css/'))
-    .pipe(concatCss('style.min.css'))
     .pipe(minifyCss())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/'));
