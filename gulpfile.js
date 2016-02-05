@@ -13,7 +13,7 @@ var paths = {
 };
 
 gulp.task('build:css', function() {
-  gulp.src('app/scss/application.scss')
+  gulp.src('app/scss/app.scss')
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(autoprefixer())
