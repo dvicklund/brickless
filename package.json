@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/dvicklund/brickless#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "bcrypt": "^0.8.5",
+    "eat": "^0.1.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.1"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
