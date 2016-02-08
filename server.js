@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var dataRouter = require(__dirname + '/routes/dataRoutes');
 
 app.use(express.static(__dirname + '/build'));
 
