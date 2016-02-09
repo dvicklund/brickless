@@ -624,3 +624,8 @@ h6 {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
+
+header {
+  width: 100%; }
+  header ul, header li, header h1 {
+    display: inline-block; }
