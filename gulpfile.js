@@ -61,4 +61,4 @@ gulp.task('watch:js', function() {
 gulp.task('build:all', ['build:css', 'build:html', 'build:js', 'build:static']);
 gulp.task('test:all', ['test:mocha']);
 gulp.task('watch:all', ['watch:css', 'watch:html', 'watch:js']);
-gulp.task('default', ['build:all']);
+gulp.task('default', ['build:all', 'watch:all']);
