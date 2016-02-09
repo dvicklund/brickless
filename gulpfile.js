@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var clean = require('gulp-clean');
 var webpack = require('webpack-stream');
 var sass = require('gulp-sass');
 var minifyCss = require('gulp-cssnano');
@@ -46,6 +47,11 @@ gulp.task('build:static', function() {
   gulp.src('vendor/*')
   .pipe(gulp.dest('build/vendor'));
 });
+
+gulp.task('clean', function() {
+  return gulp.src('build', {read: false})
+        .pipe(clean({force: true}));
+})
 
 gulp.task('watch:css', function() {
 	gulp.watch(paths.css, ['build:css']);

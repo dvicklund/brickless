@@ -63,7 +63,7 @@ input[type='submit'] {
   background-color: #9b4dca;
   border: 0.1rem solid #9b4dca;
   border-radius: .4rem;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
   font-size: 1.1rem;
@@ -87,7 +87,7 @@ input[type='submit'] {
   input[type='submit']:focus {
     background-color: #606c76;
     border-color: #606c76;
-    color: #fff;
+    color: #ffffff;
     outline: 0; }
   .button.button-disabled, .button[disabled],
   button.button-disabled,
