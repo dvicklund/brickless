@@ -19,7 +19,6 @@ gulp.task('build:css', function() {
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(autoprefixer())
-    .pipe(gulp.dest('app/css/'))
     .pipe(minifyCss())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('build/'));
