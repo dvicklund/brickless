@@ -9,6 +9,7 @@ var paths = {
   css: ['app/**/*.scss'],
   html: ['app/**/*.html'],
   js: ['app/**/*.js'],
+  static: ['img/*', 'vendor/*'],
   test: ['test/testRoutes.js']
 };
 
@@ -56,6 +57,10 @@ gulp.task('watch:html', function() {
 
 gulp.task('watch:js', function() {
 	gulp.watch(paths.js, ['build:js']);
+});
+
+gulp.task('watch:static', function() {
+  gulp.watch(paths.static, ['build:static'])
 });
 
 gulp.task('build:all', ['build:css', 'build:html', 'build:js', 'build:static']);
