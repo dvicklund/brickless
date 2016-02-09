@@ -42,9 +42,59 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var app = angular.module('bricks', [
+	  'ngRoute'
+	]);
+
+	__webpack_require__(1)(app);
+
+	app.config(['$routeProvider', function($routeProvider) {
+	  $routeProvider
+	  .when('/', {
+	    templateUrl: "html/login.html",
+	    controller: "PageCtrl"
+	  })
+	  .when('/shop', {
+	    templateUrl: 'html/shop.html',
+	    controller: 'PageCtrl'
+	  })
+	  // .when('/pickups', {
+	  //   templateUrl: 'html/pickups.html',
+	  //   controller: 'PickupCtrl'
+	  // })
+	  // .when('/account', {
+	  //   templateUrl: 'html/account.html',
+	  //   controller: 'AccountCtrl'
+	  // })
+	  // .when('/cart', {
+	  //   templateUrl: 'html/cart.html',
+	  //   controller: 'CartCtrl'
+	  // })
+	}])
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function(app) {
+	  __webpack_require__(2)(app);
+	}
+
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
-	
+	module.exports = function(app) {
+	  app.controller('PageCtrl', function($scope, $location, $http) {
+	    console.log('Page controller activated');
+
+	  });
+	}
+
 
 /***/ }
 /******/ ]);
