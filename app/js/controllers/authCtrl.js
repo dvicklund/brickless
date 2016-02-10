@@ -17,8 +17,14 @@ module.exports = function(app) {
       else {
         $scope.signup = true;
         $scope.authErrors = [];
-        $scope.user {}
+        $scope.user = {};
       }
+    }
+
+    $scope.getUser = function() {
+      $scope.token = $cookies.get('authToken');
+      $http.defaults.headers.common.token = $scope.token;
+      $http.get(SERVER_ADDRESS + '/api/user')
     }
   })
 }
