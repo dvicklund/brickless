@@ -12,8 +12,10 @@
 
 header {
   width: 100%;
+  border-bottom: 0.6em solid $color-primary;
 
   ul, li, h1 {
     display: inline-block;
+    margin-bottom: 0;
   }
 }
