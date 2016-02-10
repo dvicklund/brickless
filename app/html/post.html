@@ -1,0 +1,50 @@
+<section id="post-an-item">
+  <form class="post-form" action="">
+    <fieldset class="item-info">
+      <h2>What are you selling?</h2>
+      <label for="item-name">Item Name</label>
+      <input id="item-name" type="text" placeholder="Item Name">
+      <label for="item-price">Item Price</label>
+      <input id="item-price" type="tel" placeholder="$0.00">
+      <label for="item-description">Item Description</label>
+      <textarea name="item-description" id="item-description" cols="30" rows="10" placeholder="Description"></textarea>
+      <!-- need photo upload method -->
+      <label for="item-photo">Upload Photo</label>
+      <input id="item-photo" type="text" placeholder="Upload Photo - Method needed">
+    </fieldset>
+
+    <fieldset class="contact-info">
+      <h3>How would you like to be contacted about this sale?</h3>
+      <label for="contact-email">E-mail Address</label>
+      <input id="contact-email" type="email" placeholder="emailaddress@url.com">
+      <div class="toggle-group">
+        <label for="contact-call-availability">Can you be called?</label>
+        <div class="toggle-button">
+          <label for="contact-call-yes">Yes</label>
+          <input id="contact-call-yes" name="call-yes-no" type="radio" value="yes">
+        </div>
+        <div class="toggle-button">
+          <label for="contact-call-no">No</label>
+          <input id="contact-call-no" name="call-yes-no" type="radio" value="no">
+        </div>
+      </div>
+      <label for="contact-number">Telephone</label>
+      <input id="contact-number" type="tel" placeholder="(555) 555-5555">
+      <label for="contact-item-location">Where is the Item?</label>
+      <select name="location" id="contact-item-location">
+        <option value="home">home</option>
+        <option value="work">work</option>
+      </select>
+    </fieldset>
+    <button id="submit-post">Post Now</button>
+  </form>
+  <div class="seller-item-count">
+    <h3>Items You're Selling</h3>
+    <div class="seller-item-count-qty" id="seller-item-qty">
+<!-- placeholder qty -->43
+    </div>
+    <a href="seller-list">
+      <div class="seller-item-count-view-link">View List</div>
+    </a>
+  </div>
+</section>
