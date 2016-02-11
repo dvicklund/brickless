@@ -2,7 +2,7 @@ module.exports = function(app) {
 
   app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
     function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
-      console.log(process.env);
+      console.log(process.env.SERVER_ADDRESS);
       var SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'http://localhost:3000';
 
       function isLoggedIn() {
