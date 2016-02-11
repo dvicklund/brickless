@@ -2,7 +2,7 @@ module.exports = function(app) {
 
   app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
     function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
-      var SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'localhost:3000';
+      var SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'http://localhost:3000';
 
       function isLoggedIn() {
         if ($cookies.get('token'))
@@ -50,7 +50,6 @@ module.exports = function(app) {
           return $scope.authErrors.push('Please enter username and password.');
 
         if($scope.signup) {
-          debugger;
           $http.post(SERVER_ADDRESS + '/auth/signup', user)
             .then(function(res) {
               $cookies.put('token', res.data.token);
