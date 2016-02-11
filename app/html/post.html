@@ -17,17 +17,15 @@
       <h3>How would you like to be contacted about this sale?</h3>
       <label for="contact-email">E-mail Address</label>
       <input id="contact-email" type="email" placeholder="emailaddress@url.com">
-      <div class="toggle-group">
-        <label for="contact-call-availability">Can you be called?</label>
-        <div class="toggle-button">
-          <label for="contact-call-yes">Yes</label>
-          <input id="contact-call-yes" name="call-yes-no" type="radio" value="yes">
-        </div>
-        <div class="toggle-button">
-          <label for="contact-call-no">No</label>
-          <input id="contact-call-no" name="call-yes-no" type="radio" value="no">
-        </div>
+
+      <div class="toggle-button clearfix">
+        <div class="toggle-label">Can you be called?</div>
+        <input type="radio" id="call-yes" name="call-yes-no" value="yes" checked />
+        <label for="call-yes">Yes</label>
+        <input type="radio" id="call-no" name="call-yes-no" value="no" />
+        <label for="call-no">No</label>
       </div>
+
       <label for="contact-number">Telephone</label>
       <input id="contact-number" type="tel" placeholder="(555) 555-5555">
       <label for="contact-item-location">Where is the Item?</label>
