@@ -2,7 +2,7 @@ module.exports = function(app) {
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
-      templateUrl: 'html/home.html',
+      templateUrl: 'html/login.html',
       controller: 'PageCtrl'
     })
     .when('/login', {

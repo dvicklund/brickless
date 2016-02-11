@@ -1,9 +1,25 @@
-<section id="login">
-  <label for="username">Username
-    <input type="text" name="username" placeholder="Username">
-  </label>
-  <label for="password">Password
-    <input type="password" name="password" placeholder="Password">
-  </label>
-  <input type="submit" name="loginBtn" value="Login">
-</section>
+<form id="login" ng-submit="authenticate(user)">
+  <section>
+    <label for="username">Username
+      <input type="text" ng-model="user.auth.username" name="username" placeholder="Username">
+    </label>
+    <label for="password">Password
+      <input type="password" ng-model="user.auth.password" name="password" placeholder="Password">
+    </label>
+  </section>
+  <section id="signup" ng-if="signup">
+    <label for="firstName">First Name
+      <input type="text" ng-model="user.firstName" name="firstName" placeholder="First Name">
+    </label>
+    <label for="lastName">Last Name
+      <input type="text" ng-model="user.lastName" name="lastName" placeholder="Last Name">
+    </label>
+    <label for="email">Email Address
+      <input type="text" ng-model="user.email" name="email" placeholder="Email Address">
+    </label>
+  </section>
+  <input type="submit" name="loginBtn" ng-if="!signup" value="Login">
+  <input type="submit" name="signupBtn" ng-if="signup" value="Sign Up">
+  <button type="button" ng-click="toggleSignup()" ng-if="!signup">No account? Sign up here!</button>
+  <button type="button" ng-click="toggleSignup()" ng-if="signup">Already have an account? Login here!</button>
+</form>

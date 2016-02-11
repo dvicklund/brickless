@@ -3,10 +3,10 @@ var bcrypt = require('bcrypt');
 var eat = require('eat');
 
 var userSchema = new mongoose.Schema({
-  name    : String,
+  firstName: String,
+  lastName: String,
+  email: String,
 	username: String,
-  lat: {type: Number, default: 0},
-  lng: {type: Number, default: 0},
   lastCheckin: {
     type: Date,
     default: Date.now()
