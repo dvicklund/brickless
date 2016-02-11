@@ -70,11 +70,6 @@ authRouter.post('/signin', basicHttp, bodyParser.json(), function(req, res) {
 authRouter.get('/user', decryptUser, function(req, res) {
 	res.json({
 		username: req.user.username,
-		deviceId: req.user.deviceId,
-		lat: req.user.lat,
-		lng: req.user.lng,
-		contacts: req.user.contacts,
-		lastCheckin: req.user.lastCheckin,
 		id: req.user._id
 	});
 });
