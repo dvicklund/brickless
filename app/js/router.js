@@ -13,6 +13,15 @@ module.exports = function(app) {
       templateUrl: 'html/shop.html',
       controller: 'PageCtrl'
     })
+    .when('/post', {
+      templateUrl: 'html/post.html',
+      controller: 'PageCtrl'
+    })
+    .when('/post-view', {
+      // /postid ???
+      templateUrl: 'html/post-view.html',
+      controller: 'PageCtrl'
+    })
     // TODO: Controllers
     // .when('/pickups', {
     //   templateUrl: 'html/pickups.html',
@@ -28,3 +37,4 @@ module.exports = function(app) {
     // })
   }]);
 };
+
