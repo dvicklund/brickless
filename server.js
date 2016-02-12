@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/catch_dev');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/brickless');
 process.env.APP_SECRET = process.env.APP_SECRET || 'suchmysterynoonewilleverknow';
 
 //var dataRouter = require(__dirname + '/routes/dataRoutes');
