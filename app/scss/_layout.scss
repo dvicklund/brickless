@@ -30,6 +30,8 @@ header {
 nav {
   width: 400px;
   margin: auto;
+  border-bottom: 0.6em solid $color-primary;
+  margin-bottom: 0;
   ul {
     display: flex;
     justify-content: space-between;
@@ -39,20 +41,54 @@ nav {
   a {
     margin: 0 0.5em;
   }
-  li {
-  border-bottom: 0.6em solid $color-primary;
-  margin-bottom: 0;
-  }
 }
-// posting items
-#post-an-item {
-  margin: 1em;
-  fieldset {
-    border: 1px solid black;
-    padding: 1em;
+// modules
+.blue-box {
+  background-color: #3D4EA6;
+  border: 2px solid black;
+  color: #FFFFFF;
+  width: 300px;
+  padding: 1rem;
+  margin: 1rem 0;
+  .big-number {
+    font-size: 4rem;
+    margin: 0 2rem;
+    float: left;
+  }
+  .link-button {
+    border: 1px solid #000;
+    background-color: #f4f5f6;
+    color: #606c76;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 2rem;
+    float: left;
+    margin-top: 1.3em;
   }
 }
 
+// posting items
+#post-an-item {
+  margin: 1em;
+  h3 {
+    font-size: 2rem;
+    margin: 1rem;
+    letter-spacing: 0.05rem;
+  }
+  fieldset {
+    border: 2px solid black;
+    padding: 1em;
+  }
+  input, select, textarea {
+    background-color: #ffffff;
+    border-radius: 0;
+    font-size: 1.25rem;
+  }
+}
+.item-info {
+  max-width: 500px;
+}
 .toggle-label {
   margin-right: 1em;
   float: left;
@@ -90,7 +126,7 @@ nav {
   cursor: pointer;
 }
 .toggle-button input:checked + label {
-  background-color: #A5DC86;
+  background-color: #66D9BF;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
@@ -100,8 +136,33 @@ nav {
 .toggle-button label:last-of-type {
   border-radius: 0 4px 4px 0;
 }
-
-@media (min-width: 600px) {
-
-
+.seller-item-count {
+  height: 150px;
 }
+#submit-post {
+  width: 300px;
+}
+
+// media queries
+@media (max-width: 699px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+@media (min-width: 700px) {
+  .mobile-show {
+    display: none;
+  }
+  // post-items
+  .left {
+    float: left;
+  }
+  .blue-box {
+    margin-top: 0;
+    margin-left: 2rem;
+  }
+  #submit-post {
+    width: 100%;
+  }
+}
+
