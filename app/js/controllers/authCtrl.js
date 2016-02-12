@@ -2,8 +2,6 @@ module.exports = function(app) {
 
   app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
     function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
-      var SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'http://localhost:3000';
-
       function isLoggedIn() {
         if ($cookies.get('token'))
           return true;
@@ -35,7 +33,7 @@ module.exports = function(app) {
       $scope.getUser = function() {
         $scope.token = $cookies.get('token');
         $http.defaults.headers.common.token = $scope.token;
-        $http.get(SERVER_ADDRESS + '/auth/user')
+        $http.get('/auth/user')
           .then(function(res) {
             $scope.currentUser = res.data;
           }, function(err) {
@@ -50,7 +48,7 @@ module.exports = function(app) {
           return $scope.authErrors.push('Please enter username and password.');
 
         if($scope.signup) {
-          $http.post(SERVER_ADDRESS + '/auth/signup', user)
+          $http.post('/auth/signup', user)
             .then(function(res) {
               $cookies.put('token', res.data.token);
               $scope.getUser();
@@ -65,7 +63,7 @@ module.exports = function(app) {
         } else {
           $http({
             method: 'POST',
-            url: SERVER_ADDRESS + '/auth/signin',
+            url: '/auth/signin',
             data: {
               lat: $rootScope.lat,
               lng: $rootScope.lng,
