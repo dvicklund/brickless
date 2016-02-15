@@ -1,0 +1,17 @@
+<!--<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>-->
+
+
+<div class="container">
+  <h1>Upload your image</h1>
+  <p>Crop your image just how you want it before you save.</p>
+  <p>If you would like your image to load faster - just spend a second optimizing it here: <a href="http://optimizilla.com/">http://optimizilla.com/</a>.</p>
+  <p>If you want to fancy your image up a bit, adjusting color, brightness, etc., try Pixlr: <a href="https://pixlr.com/">https://pixlr.com/</a>.</p>
+  	<form class="file-upload">
+		<button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">ADD IMAGE</button>
+		<input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+		<div class="image-upload-wrap" style="display:none">
+			<div class="image-title-wrap"><span class="image-title">Uploaded Image</span><button type="button" onclick="removeUpload()" class="remove-image">X</button></div>
+			<img class="file-upload-image" src="#" alt="your image"/>
+		</div>
+	</form>
+</div>
