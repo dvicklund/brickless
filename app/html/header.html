@@ -3,12 +3,12 @@
   <nav>
     <ul>
     <!--TODO: Route for generic shopping landing page-->
-    <li><a href="/shop"><i class="fa fa-shopping-basket"></i>Shop</a></li>
+    <li><a ng-click="goto('/shop')"><i class="fa fa-shopping-basket"></i>Shop</a></li>
 
     <!--TODO: Work out route for id-specific account management, pickups, cart-->
-    <li><a href="/pickups"><i class="fa fa-car"></i>Pickups</a></li>
-    <li><a href="/account"><i class="fa fa-list"></i>Account</a></li>
-    <li><a href="/cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+    <li><a ng-click="goto('/pickups')"><i class="fa fa-car"></i>Pickups</a></li>
+    <li><a ng-click="goto('/profile')"><i class="fa fa-list"></i>Account</a></li>
+    <li><a ng-click="goto('/cart')"><i class="fa fa-shopping-cart"></i>Cart</a></li>
   </ul>
   </nav>
 </header>
