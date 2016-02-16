@@ -22,6 +22,14 @@
     <label for="email">Email Address
       <input type="text" ng-model="user.email" name="email" placeholder="Email Address">
     </label>
+    <label for="locationCity">City
+      <input type="text" ng-model="user.locationCity" name="locationCity" placeholder="City">
+    </label>
+    <label for="locationState">State
+      <select ng-model="user.locationState" name="locationState" placeholder="State">
+        <option ng-repeat="state in stateList" value="{{state.abbr}}">{{state.name}}</option>
+      </select>
+    </label>
   </section>
   <input type="submit" name="loginBtn" ng-if="!signup" value="Login">
   <input type="submit" name="signupBtn" ng-if="signup" value="Sign Up">
