@@ -1,4 +1,9 @@
 <form id="login" ng-submit="authenticate(user)">
+  <section id="errorBox">
+    <ul>
+      <li ng-repeat="error in authErrors">{{error}}</li>
+    </ul>
+  </section>
   <section>
     <label for="username">Username
       <input type="text" ng-model="user.auth.username" name="username" placeholder="Username">
