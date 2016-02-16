@@ -6,7 +6,6 @@ var itemRouter = module.exports = express.Router();
 
 itemRouter.get('/:item_id', function(req, res)
 {
-
 	Item.findById(req.params.item_id, function(err, item) {
 		if (err) res.send(err);
 
@@ -35,6 +34,6 @@ itemRouter.post('/', function(req, res) {
 	{
 		if (err) res.send(err);
 
-		res.json({message: 'Item posted!'});
+		res.status(200).json(msg: 'Item posted.');
 	});
 });
