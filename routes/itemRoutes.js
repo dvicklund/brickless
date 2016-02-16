@@ -13,7 +13,7 @@ itemRouter.get('/:item_id', function(req, res)
 	})
 });
 
-itemRouter.get('/', function(req, res, next) {
+itemRouter.get('/', function(req, res) {
 	Item.find(function(err, items){
 		if (err) res.send(err);
 
@@ -25,6 +25,7 @@ itemRouter.post('/', function(req, res) {
 
 	var item = new Item();
 	item.title = req.body.title;
+	item.displayPhoto = req.body.displayPhoto;
 	item.askingPrice = req.body.askingPrice;
 	item.postDate = req.body.postDate;
 	item.userName = req.body.userName;
@@ -34,6 +35,7 @@ itemRouter.post('/', function(req, res) {
 	{
 		if (err) res.send(err);
 
-		res.status(200).json(msg: 'Item posted.');
+		res.status(200).json({ msg: 'Item posted.'});
 	});
 });
+

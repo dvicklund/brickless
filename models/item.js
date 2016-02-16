@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
 	title: String,
-	// displayPhoto: , // working on this.
+	displayPhoto: String,
 	askingPrice: Number,
 	postDate: Date,
 	userName: String,
