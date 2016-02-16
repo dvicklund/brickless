@@ -22,6 +22,10 @@ module.exports = function(app) {
       templateUrl: 'html/post-view.html',
       controller: 'PageCtrl'
     })
+    .when('/profile', {
+      templateUrl: 'html/profile.html',
+      controller: 'ProfileCtrl'
+    })
     // TODO: Controllers
     // .when('/pickups', {
     //   templateUrl: 'html/pickups.html',

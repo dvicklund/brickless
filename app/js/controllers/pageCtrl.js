@@ -1,5 +1,7 @@
 module.exports = function(app) {
-  app.controller('PageCtrl', function($scope, $location, $http) {
-    
-  });
+  app.controller('PageCtrl', ['$scope', '$location', function($scope, $location) {
+    $scope.goto = function(path) {
+      $location.path(path);
+    }
+  }]);
 }
