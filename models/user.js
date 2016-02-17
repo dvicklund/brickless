@@ -11,6 +11,12 @@ var userSchema = new mongoose.Schema({
   locationState: String,
   locationLat: Number,
   locationLng: Number,
+  sellerRating: Number,
+  buyerRating: Number,
+  sellerHistory: Number,
+  buyerHistory: Number,
+  itemsForSale: Number,
+  averageResponseInMinutes: Number,
   lastLogin: {
     type: Date,
     default: Date.now()

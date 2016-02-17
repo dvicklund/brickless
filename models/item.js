@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
+	detailId: String,
 	title: String,
 	displayPhoto: String,
 	askingPrice: Number,
