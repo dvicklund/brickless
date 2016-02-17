@@ -11,7 +11,7 @@ var itemRouter = module.exports = express.Router();
 itemRouter.get('/:item_id', function(req, res)
 {
 	ItemDetail.findById(req.params.item_id, function(err, item) {
-		if (err) res.send(err);
+		if (!item) res.status(404).json({msg: 'Item doesn\'t exist!'});
 
 		res.json(item);
 	})
