@@ -11,7 +11,7 @@ var itemRouter = require(__dirname + '/routes/itemRoutes');
 
 app.use(bodyParser.json());
 app.use('/item', itemRouter);
-
+app.use('/auth', authRouter);
 
 var router = express.Router();
 
