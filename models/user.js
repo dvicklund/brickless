@@ -7,7 +7,11 @@ var userSchema = new mongoose.Schema({
   lastName: String,
   email: String,
 	username: String,
-  lastCheckin: {
+  locationCity: String,
+  locationState: String,
+  locationLat: Number,
+  locationLng: Number,
+  lastLogin: {
     type: Date,
     default: Date.now()
   },

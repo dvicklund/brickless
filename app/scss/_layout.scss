@@ -10,6 +10,15 @@
   transform: translate(-50%, -50%);
 }
 
+#errorBox li {
+  padding: 0.5em 1em;
+  list-style-type: none;
+  color: red;
+  background-color: rgba(150, 0, 0, 0.1);
+  border: 2px solid red;
+  border-radius: 0.5em;
+}
+
 header {
   width: 100%;
   display: flex;
@@ -165,4 +174,3 @@ nav {
     width: 100%;
   }
 }
-

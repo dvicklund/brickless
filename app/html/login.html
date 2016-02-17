@@ -1,4 +1,9 @@
 <form id="login" ng-submit="authenticate(user)">
+  <section id="errorBox">
+    <ul>
+      <li ng-repeat="error in authErrors">{{error}}</li>
+    </ul>
+  </section>
   <section>
     <label for="username">Username
       <input type="text" ng-model="user.auth.username" name="username" placeholder="Username">
@@ -16,6 +21,14 @@
     </label>
     <label for="email">Email Address
       <input type="text" ng-model="user.email" name="email" placeholder="Email Address">
+    </label>
+    <label for="locationCity">City
+      <input type="text" ng-model="user.locationCity" name="locationCity" placeholder="City">
+    </label>
+    <label for="locationState">State
+      <select ng-model="user.locationState" name="locationState" placeholder="State">
+        <option ng-repeat="state in stateList" value="{{state.abbr}}">{{state.name}}</option>
+      </select>
     </label>
   </section>
   <input type="submit" name="loginBtn" ng-if="!signup" value="Login">

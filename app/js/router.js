@@ -3,7 +3,7 @@ module.exports = function(app) {
     $routeProvider
     .when('/', {
       templateUrl: 'html/login.html',
-      controller: 'PageCtrl'
+      controller: 'AuthCtrl'
     })
     .when('/login', {
       templateUrl: "html/login.html",
@@ -22,6 +22,10 @@ module.exports = function(app) {
       templateUrl: 'html/post-view.html',
       controller: 'PageCtrl'
     })
+    .when('/profile', {
+      templateUrl: 'html/profile.html',
+      controller: 'ProfileCtrl'
+    })
     // TODO: Controllers
     // .when('/pickups', {
     //   templateUrl: 'html/pickups.html',
@@ -37,4 +41,3 @@ module.exports = function(app) {
     // })
   }]);
 };
-
