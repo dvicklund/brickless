@@ -1,11 +1,7 @@
 module.exports = function(app) {
 
-  app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
-    function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
-      //
-      // $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
-      //   if(prev) console.log(prev);
-      // })
+  app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64', '$q',
+    function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64, $q) {
 
       $scope.stateList = [
         { name: 'ALABAMA', abbr: 'AL'},
@@ -74,6 +70,12 @@ module.exports = function(app) {
       $scope.signup = false;
       $scope.token = '';
       $scope.currentUser = null;
+
+      $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
+        if(prev.$$route.originalPath === '/profile') {
+          curr.locals.$scope.authErrors.push('Must be logged in to view your account (duh)!')
+        }
+      })
 
       function isLoggedIn() {
         if ($cookies.get('token'))
