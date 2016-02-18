@@ -2,6 +2,11 @@ module.exports = function(app) {
 
   app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
     function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
+      // 
+      // $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
+      //   if(prev) console.log(prev);
+      // })
+
       function isLoggedIn() {
         if ($cookies.get('token'))
           return true;

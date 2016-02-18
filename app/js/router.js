@@ -7,7 +7,7 @@ module.exports = function(app) {
     })
     .when('/login', {
       templateUrl: "html/login.html",
-      controller: "PageCtrl"
+      controller: "AuthCtrl"
     })
     .when('/shop', {
       templateUrl: 'html/shop.html',
