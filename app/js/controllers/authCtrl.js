@@ -2,22 +2,10 @@ module.exports = function(app) {
 
   app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
     function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
-      // 
+      //
       // $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
       //   if(prev) console.log(prev);
       // })
-
-      function isLoggedIn() {
-        if ($cookies.get('token'))
-          return true;
-        else
-          return false;
-      }
-
-      function checkAuth() {
-        if (!(isLoggedIn()))
-          $location.path('/login');
-      }
 
       $scope.stateList = [
         { name: 'ALABAMA', abbr: 'AL'},
@@ -86,6 +74,18 @@ module.exports = function(app) {
       $scope.signup = false;
       $scope.token = '';
       $scope.currentUser = null;
+
+      function isLoggedIn() {
+        if ($cookies.get('token'))
+          return true;
+        else
+          return false;
+      }
+
+      function checkAuth() {
+        if (!(isLoggedIn()))
+          $location.path('/login');
+      }
 
       // Switch between signup and login
       $scope.toggleSignup = function() {
