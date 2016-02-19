@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var eat = require('eat');
-var itemSchema = require('./item');
 
 var userSchema = new mongoose.Schema({
   username: String,
@@ -33,7 +32,7 @@ var userSchema = new mongoose.Schema({
     message: String,
     offerAmount: Number,
     read: Boolean,
-    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    //item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
     recipient: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
   receivedOffers: [{
@@ -41,17 +40,17 @@ var userSchema = new mongoose.Schema({
     message: String,
     offerAmount: Number,
     read: Boolean,
-    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    //item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
     sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
   averageResponseMinutes: Number,
-  sellerRating: Number,
+  sellerRatings: [Number],
   sellerHistory: [{
     saleDate: Date,
     itemSold: String,
     buyer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
-  buyerRating: Number,
+  buyerRatings: [Number],
   buyerHistory: [{
     purchaseDate: Date,
     itemBought: String,

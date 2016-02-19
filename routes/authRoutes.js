@@ -84,9 +84,9 @@ authRouter.get('/user', decryptUser, function(req, res) {
 		lastLogin: req.user.lastLogin,
 		addresses: req.user.addresses,
 		phoneNumbers: req.user.phoneNumbers,
-		sellerRating: req.user.sellerRating,
+		sellerRatings: req.user.sellerRatings,
 		sellerHistory: req.user.sellerHistory,
-		buyerRating: req.user.buyerRating,
+		buyerRatings: req.user.buyerRatings,
 		buyerHistory: req.user.buyerHistory,
 		id: req.user._id
 	});
