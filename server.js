@@ -1,12 +1,18 @@
 var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/brickless');
 process.env.APP_SECRET = process.env.APP_SECRET || 'suchmysterynoonewilleverknow';
 
 var authRouter = require(__dirname + '/routes/authRoutes');
+var itemRouter = require(__dirname + '/routes/itemRoutes');
 
+app.use(bodyParser.json());
+app.use('/item', itemRouter);
 app.use('/auth', authRouter);
+
+var router = express.Router();
 
 app.use(express.static(__dirname + '/build'));
 
