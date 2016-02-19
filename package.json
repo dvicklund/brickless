@@ -39,7 +39,8 @@
     "gulp-mocha": "^2.2.0",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
-    "webpack-stream": "^3.1.0"
+    "webpack-stream": "^3.1.0",
+    "multiparty": "^4.1.2"
   },
   "devDependencies": {
   }

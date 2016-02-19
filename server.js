@@ -6,8 +6,10 @@ process.env.APP_SECRET = process.env.APP_SECRET || 'suchmysterynoonewilleverknow
 
 //var dataRouter = require(__dirname + '/routes/dataRoutes');
 var authRouter = require(__dirname + '/routes/authRoutes');
+var imageRouter = require(__dirname + 'routes/imageRoutes');
 
 app.use('/auth', authRouter);
+app.use('image', imageRouter);
 
 app.use(express.static(__dirname + '/build'));
 
