@@ -34,10 +34,7 @@ var userSchema = new mongoose.Schema({
     offerAmount: Number,
     read: Boolean,
     item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
-    recipient: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
+    recipient: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
   receivedOffers: [{
     date: Date,
@@ -45,20 +42,14 @@ var userSchema = new mongoose.Schema({
     offerAmount: Number,
     read: Boolean,
     item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
-    sender: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
+    sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
   averageResponseMinutes: Number,
   sellerRating: Number,
   sellerHistory: [{
     saleDate: Date,
     itemSold: String,
-    buyingUser: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
+    buyer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
   buyerRating: Number,
   auth: {
