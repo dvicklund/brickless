@@ -21,36 +21,25 @@
 
 header {
   width: 100%;
+  border-bottom: 0.6em solid $color-primary;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 0.5em;
-  h1 {
+  justify-content: space-around;
+
+  ul, li, h1 {
+    display: inline-block;
     margin-bottom: 0;
+    padding: 0 1vw;
   }
 }
+
 .header_logo {
   width: 300px;
   line-height: 1;
   margin-bottom: 0;
 }
-nav {
-  width: 400px;
-  margin: auto;
-  border-bottom: 0.6em solid $color-primary;
-  margin-bottom: 0;
-  ul {
-    display: flex;
-    justify-content: space-between;
-    list-style: none;
-    margin-bottom: 0
-  }
-  a {
-    margin: 0 0.5em;
-  }
-}
+
 // modules
 .blue-box {
   background-color: #3D4EA6;

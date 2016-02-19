@@ -1,18 +1,7 @@
 module.exports = function(app) {
 
-  app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
-    function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
-      function isLoggedIn() {
-        if ($cookies.get('token'))
-          return true;
-        else
-          return false;
-      }
-
-      function checkAuth() {
-        if (!(isLoggedIn()))
-          $location.path('/login');
-      }
+  app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64', '$q',
+    function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64, $q) {
 
       $scope.stateList = [
         { name: 'ALABAMA', abbr: 'AL'},
@@ -81,6 +70,25 @@ module.exports = function(app) {
       $scope.signup = false;
       $scope.token = '';
       $scope.currentUser = null;
+
+      $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
+
+        if(prev && prev.$$route.originalPath === '/profile' && curr.locals.$scope.authErrors.indexOf('Must be logged in to view your account (duh)!') === -1) {
+          curr.locals.$scope.authErrors.push('Must be logged in to view your account (duh)!')
+        }
+      })
+
+      function isLoggedIn() {
+        if ($cookies.get('token'))
+          return true;
+        else
+          return false;
+      }
+
+      function checkAuth() {
+        if (!(isLoggedIn()))
+          $location.path('/login');
+      }
 
       // Switch between signup and login
       $scope.toggleSignup = function() {
