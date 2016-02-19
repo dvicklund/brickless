@@ -10,7 +10,20 @@
   transform: translate(-50%, -50%);
 }
 
-#errorBox li {
+#signupPrompt, #loginPrompt {
+  display: block;
+  width: 50vw;
+
+  @media (min-width: 720px) {
+    width: 25vw;
+  }
+
+  @media (max-width: 480px) {
+    width: 75vw;
+  }
+}
+
+#errorBox li, {
   padding: 0.5em 1em;
   list-style-type: none;
   color: red;
