@@ -3,21 +3,65 @@ var bcrypt = require('bcrypt');
 var eat = require('eat');
 
 var userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
   firstName: String,
   lastName: String,
-  email: String,
-	username: String,
+  addresses: [{
+    name: String,
+    street: String,
+    city: String,
+    state: String,
+    zip: Number,
+    lat: Number,
+    lng: Number
+  }],
+  phoneNumbers: [String],
   locationCity: String,
   locationState: String,
   locationLat: Number,
   locationLng: Number,
+  sellerRating: Number,
+  buyerRating: Number,
+  sellerHistory: Number,
+  buyerHistory: Number,
+  itemsForSale: Number,
+  averageResponseInMinutes: Number,
   lastLogin: {
     type: Date,
     default: Date.now()
   },
-  checkInRequested: Boolean,
-  sentRequests: Array,
-  receivedRequests: Array,
+  responseRequested: Boolean,
+  preferenceFlags: Number,
+  sentOffers: [{
+    date: Date,
+    message: String,
+    offerAmount: Number,
+    read: Boolean,
+    //item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    recipient: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  }],
+  receivedOffers: [{
+    date: Date,
+    message: String,
+    offerAmount: Number,
+    read: Boolean,
+    //item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    sender: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  }],
+  averageResponseMinutes: Number,
+  sellerRatings: [Number],
+  sellerHistory: [{
+    saleDate: Date,
+    itemSold: String,
+    buyer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  }],
+  buyerRatings: [Number],
+  buyerHistory: [{
+    purchaseDate: Date,
+    itemBought: String,
+    seller: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  }],
   auth: {
   	basic: {
   		username: String,
