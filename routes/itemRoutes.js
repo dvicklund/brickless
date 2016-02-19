@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var Item = require(__dirname + '/../models/item');
-var ItemDetail = require(__dirname + '/../models/ItemDetail');
+var ItemDetail = require(__dirname + '/../models/itemDetail');
 var User = require(__dirname + '/../models/user');
 
 var itemRouter = module.exports = express.Router();
@@ -36,7 +36,7 @@ itemRouter.post('/', function(req, res) {
 
 		var dateOfPost = Date.now(); // Get the date at the time of post.
 
-		// Create the detailed post. 
+		// Create the detailed post.
 		var itemDetail = new ItemDetail();
 		itemDetail.title = req.body.title;
 		itemDetail.displayPhoto = req.body.displayPhoto;
@@ -82,4 +82,3 @@ itemRouter.post('/', function(req, res) {
 		});
 	});
 });
-
