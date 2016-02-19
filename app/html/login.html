@@ -1,4 +1,4 @@
-<form id="login" ng-submit="authenticate(user)">
+<form id="login" ng-submit="authenticate(user)" ng-keyup="$event.keyCode == 13 && authenticate(user)">
   <section id="errorBox">
     <ul>
       <li ng-repeat="error in authErrors">{{error}}</li>
