@@ -52,6 +52,11 @@ var userSchema = new mongoose.Schema({
     buyer: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
   }],
   buyerRating: Number,
+  buyerHistory: [{
+    purchaseDate: Date,
+    itemBought: String,
+    seller: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  }],
   auth: {
   	basic: {
   		username: String,

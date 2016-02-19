@@ -82,9 +82,23 @@ authRouter.get('/user', decryptUser, function(req, res) {
 		locationCity: req.user.locationCity,
 		locationState: req.user.locationState,
 		lastLogin: req.user.lastLogin,
+		addresses: req.user.addresses,
+		phoneNumbers: req.user.phoneNumbers,
+		sellerRating: req.user.sellerRating,
+		sellerHistory: req.user.sellerHistory,
+		buyerRating: req.user.buyerRating,
+		buyerHistory: req.user.buyerHistory,
 		id: req.user._id
 	});
 });
+
+authRouter.get('/user/requests', decryptUser, function(req, res) {
+	res.json({
+		responseRequested: req.user.responseRequested,
+		receivedOffers: req.user.receivedOffers,
+		sentOffers: req.user.sentOffers
+	})
+})
 
 authRouter.post('/user', bodyParser.json(), function(req, res) {
 	User.findOneAndUpdate({'_id': req.body.id}, req.body, {}, function(err, foundUser) {

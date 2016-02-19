@@ -6,5 +6,30 @@
   <h3>Proper Name: {{currentUser.firstName}} {{currentUser.lastName}}</h3>
   <h4>Residing in {{currentUser.locationCity}}, {{currentUser.locationState}}</h4>
   <h5>Last Login: {{currentUser.lastLogin}}</h5>
+  <section id="userHistory">
+    <h2>Your History</h2>
+    <h3>Sales</h3>
+    <h4 id="noSalesMessage" ng-if="!currentUser.sellerHistory.length">You have no sales yet!</h4>
+    <ul id="sellerHistory" ng-if="currentUser.sellerHistory">
+      <li ng-repeat="sale in currentUser.sellerHistory">
+        <h5>Date: </h5><p>{{sale.saleDate}}</p>
+        <h5>Item Sold: </h5><p>{{sale.itemSold}}</p>
+        <h5>Buyer: </h5><p>
+          <!-- TODO: add buyer name? or another route to grab it-->
+        </p>
+      </li>
+    </ul>
+    <h3>Purchases</h3>
+    <h4 id="noPurchasesMessage" ng-if"!currentUser.buyerHistory.length">You have no purchases yet!</h4>
+    <ul id="buyerHistory" ng-if="currentUser.buyerHistory">
+      <li ng-repeat="purchase in currentuser.buyerHistory">
+        <h5>Date: </h5><p>{{purchase.purchaseDate}}</p>
+        <h5>Item Bought: </h5><p>{{purchase.itemBought}}</p>
+        <h5>Seller: </h5><p>
+          <!-- TODO: add seller name/email? or another route to grab it-->
+        </p>
+      </li>
+    </ul>
+  </section>
   <button type="button" name="editUserInfo" ng-click="editUser()">{{editSave}}</button>
 </section>
