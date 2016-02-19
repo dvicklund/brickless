@@ -1,12 +1,23 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var eat = require('eat');
+var itemSchema = require('./item');
 
 var userSchema = new mongoose.Schema({
+  username: String,
+  email: String,
   firstName: String,
   lastName: String,
-  email: String,
-	username: String,
+  addresses: [{
+    name: String,
+    street: String,
+    city: String,
+    state: String,
+    zip: Number,
+    lat: Number,
+    lng: Number
+  }],
+  phoneNumbers: [String],
   locationCity: String,
   locationState: String,
   locationLat: Number,
@@ -15,9 +26,41 @@ var userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now()
   },
-  checkInRequested: Boolean,
-  sentRequests: Array,
-  receivedRequests: Array,
+  responseRequested: Boolean,
+  preferenceFlags: Number,
+  sentOffers: [{
+    date: Date,
+    message: String,
+    offerAmount: Number,
+    read: Boolean,
+    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    recipient: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }],
+  receivedOffers: [{
+    date: Date,
+    message: String,
+    offerAmount: Number,
+    read: Boolean,
+    item: {type: mongoose.Schema.Types.ObjectId, ref: 'Item'},
+    sender: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }],
+  averageResponseMinutes: Number,
+  sellerRating: Number,
+  sellerHistory: [{
+    saleDate: Date,
+    itemSold: String,
+    buyingUser: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }],
+  buyerRating: Number,
   auth: {
   	basic: {
   		username: String,
