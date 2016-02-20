@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var uuid = require('node-uuid');
 var express = require('express');
 var Item = require(__dirname + '/../models/item');
 var ItemDetail = require(__dirname + '/../models/itemDetail');
@@ -7,14 +8,91 @@ var User = require(__dirname + '/../models/user');
 var itemRouter = module.exports = express.Router();
 
 // This route gets the details on an item.
-// Call this route with the detailId of any lightweight item.
+// Call this route with the detailId of any posted item.
+// GET /item/{itemDetailId}
 itemRouter.get('/:item_id', function(req, res)
 {
 	ItemDetail.findById(req.params.item_id, function(err, item) {
-		if (!item) res.status(404).json({msg: 'Item doesn\'t exist!'});
-
-		res.json(item);
+		if (!item) res.status(404).json({msg: 'Item doesn\'t exist.'});
+		else res.json(item);
 	})
+});
+
+// This is the update endpoint.
+// PUT /item/{itemDetailId}
+itemRouter.put('/:item_id', function(req, res)
+{
+	ItemDetail.findById(req.params.item_id, function(err, itemDetail) {
+		if (err) res.send(err);
+		else if (!itemDetail) res.status(404).json({ msg: 'Item doesn\'t exist.' });
+		else
+		{
+			Item.findOne({'linkId': itemDetail.linkId}, function(err, item)
+			{
+				if (!item) 
+				{
+					res.status(404).json({ msg: 'Item doesn\'t exist.' });
+					return;
+				}
+
+				if (req.body.title) 	  
+				{
+					itemDetail.title = req.body.title; 
+					item.title = req.body.title;
+				}
+				if (req.body.description) itemDetail.description = req.body.description;
+				if (req.body.askingPrice)
+				{ 
+					itemDetail.askingPrice = req.body.askingPrice; 
+					item.askingPrice = req.body.askingPrice; 
+				}
+				if (req.body.postDate) {
+					  itemDetail.postDate = req.body.postDate;
+					  item.postDate = req.body.postDate;
+				}
+				if (req.body.displayPhoto) item.displayPhoto = req.body.displayPhoto;	
+				if (req.body.morePhotos)  itemDetail.morePhotos = req.body.morePhotos;
+				if (req.body.preferredMethodOfContact) itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
+
+				itemDetail.save(function(err) {
+					if (err) res.send(err);
+					else
+					{
+						item.save(function(err)
+						{
+							if (err)
+								res.send(err);
+
+							else
+								res.status(200).json({ msg: 'Item detail updated.'});
+
+						})
+					}
+				});
+			});
+		}
+	});
+});
+
+itemRouter.delete('/:item_id', function(req, res) {
+	ItemDetail.remove({
+		_id: req.params.item_id
+	}, function(err, itemDetail) {
+		if (err) res.send(err);
+
+		res.json({ msg: 'Item detail deleted.'});
+
+		Item.findOne({'linkId': itemDetail.linkId }, function(err, item) {
+
+			if (!item) console.log('Couldn\'t find item to delete.');
+
+			item.remove({ _id: item._id}, function(err, item) {
+				if (err) res.send(err);
+
+				// res.json({ msg: 'Item deleted.'});
+			});
+		});
+	});
 });
 
 // This route gets all lightweight items.
@@ -33,19 +111,23 @@ itemRouter.post('/', function(req, res) {
 
 	User.findOne({'username': req.body.sellerUserName}, function(err, foundUser) {
 		if (err) res.send(err);
+		
 
 		var dateOfPost = Date.now(); // Get the date at the time of post.
+
+		var linkId = uuid.v4(); // Use this ID to link 
 
 		// Create the detailed post.
 		var itemDetail = new ItemDetail();
 		itemDetail.title = req.body.title;
+		itemDetail.linkId = linkId;
 		itemDetail.displayPhoto = req.body.displayPhoto;
 		itemDetail.description = req.body.description;
 		itemDetail.askingPrice = req.body.askingPrice;
 		itemDetail.postDate = dateOfPost;
 		itemDetail.sellerUserName = req.body.sellerUserName;
 		itemDetail.sellerRating = foundUser.sellerRating;
-		itemDetail.sellerTransHistory = foundUser.sellerHistory;
+		itemDetail.sellerTransHistory = 0; // Was an empty string.
 		itemDetail.sellerAverageResponse = foundUser.averageResponseInMinutes;
 		itemDetail.sellerOtherItems = foundUser.itemsForSale;
 		itemDetail.latitude = foundUser.locationLng;
@@ -58,12 +140,13 @@ itemRouter.post('/', function(req, res) {
 		{
 			if (err) res.send(err);
 
-				res.status(200).json({ msg: 'Item posted.'});
+				res.status(201).json({ msg: 'Item created with ID' + itemDetail._id });
 		});
 
 		// Create the light-weight version for searching that links to the details.
 		var item = new Item();
-		item.detailId = itemDetail._id;
+		item.detailId = itemDetail._id; // Keeping detail ID for fast lookup.
+		item.linkId = linkId; // We can index on the linkId once we create the index on the DB.
 		item.title = req.body.title;
 		item.displayPhoto = req.body.displayPhoto;
 		item.askingPrice = req.body.askingPrice;
@@ -78,7 +161,7 @@ itemRouter.post('/', function(req, res) {
 
 		foundUser.itemsForSale ++;
 		foundUser.save(function(err){
-			if (err) res.send(err); // I'm not sure if this will cause a problem if the response is already sent.
+			// if (err) res.send(err); // I'm not sure if this will cause a problem if the response is already sent.
 		});
 	});
 });
