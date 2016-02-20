@@ -13,7 +13,7 @@ var ItemDetailSchema = new Schema({
 	sellerOtherItems: Number,
 	latitude: Number,
 	longitude: Number,
-	morePhotos: [],
+	morePhotos: [String],
 	noOfInquiries: Number,
 	preferredMethodOfContact: String
 

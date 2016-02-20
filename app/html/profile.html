@@ -3,7 +3,7 @@
   <img src="" alt="Profile picture" />
   <section ng-if="upload" class="imageupload"></section>
   <button type="button" name="uploadToggleBtn" ng-click="showHideButton()">{{showHide}} Upload Form</button>
-  <h3>Proper Name: {{currentUser.firstName}} {{currentUser.lastName}}</h3>
+  <h3>Proper Name: <span contenteditable ng-model="currentUser.firstName"></span> <span contenteditable ng-model="currentUser.lastName"></span></h3>
   <h4>Residing in {{currentUser.locationCity}}, {{currentUser.locationState}}</h4>
   <h5>Last Login: {{currentUser.lastLogin}}</h5>
   <section id="userHistory">

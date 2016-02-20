@@ -30,6 +30,10 @@ module.exports = function(app) {
         });
       };
 
+      $scope.editUser = function() {
+        
+      }
+
       $scope.init();
   }]);
 }

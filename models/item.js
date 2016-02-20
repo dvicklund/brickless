@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+var ItemDetail = require('./itemDetail');
 var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
-	detailId: String,
+	itemDetail: {type: Schema.Types.ObjectId, ref: "ItemDetail"},
 	title: String,
 	displayPhoto: String,
 	askingPrice: Number,
