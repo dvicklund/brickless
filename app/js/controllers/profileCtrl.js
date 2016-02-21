@@ -4,6 +4,7 @@ module.exports = function(app) {
       $scope.currentUser;
       $scope.upload = false;
       $scope.showHide = "Show";
+      $scope.errors = [];
 
       $scope.init = function() {
         if(!$scope.currentUser) $scope.getUser(function(res, err) {
@@ -47,8 +48,7 @@ module.exports = function(app) {
 
       $scope.$on('editEnter', function(e) {
         $scope.updateUser(function(res, err) {
-          if(err) console.log(err);
-          console.log(res);
+          if(err) $scope.errors.push(err.msg);
         })
       })
 
