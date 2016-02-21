@@ -1,5 +1,10 @@
-<form id="login" ng-submit="authenticate(user)">
-  <section>
+<form id="login" ng-submit="authenticate(user)" ng-keyup="$event.keyCode == 13 && authenticate(user)">
+  <section id="errorBox">
+    <ul>
+      <li ng-repeat="error in authErrors">{{error}}</li>
+    </ul>
+  </section>
+  <section id="loginPrompt">
     <label for="username">Username
       <input type="text" ng-model="user.auth.username" name="username" placeholder="Username">
     </label>
@@ -7,7 +12,7 @@
       <input type="password" ng-model="user.auth.password" name="password" placeholder="Password">
     </label>
   </section>
-  <section id="signup" ng-if="signup">
+  <section id="signupPrompt" ng-if="signup">
     <label for="firstName">First Name
       <input type="text" ng-model="user.firstName" name="firstName" placeholder="First Name">
     </label>
@@ -17,9 +22,18 @@
     <label for="email">Email Address
       <input type="text" ng-model="user.email" name="email" placeholder="Email Address">
     </label>
+    <label for="locationCity">City
+      <input type="text" ng-model="user.locationCity" name="locationCity" placeholder="City">
+    </label>
+    <label for="locationState">State
+      <select ng-model="user.locationState" name="locationState" >
+        <option value="" disabled selected>State or Territory</option>
+        <option ng-repeat="state in stateList" value="{{state.abbr}}">{{state.name}}</option>
+      </select>
+    </label>
   </section>
   <input type="submit" name="loginBtn" ng-if="!signup" value="Login">
   <input type="submit" name="signupBtn" ng-if="signup" value="Sign Up">
   <button type="button" ng-click="toggleSignup()" ng-if="!signup">No account? Sign up here!</button>
-  <button type="button" ng-click="toggleSignup()" ng-if="signup">Already have an account? Login here!</button>
+  <button type="button" ng-click="toggleSignup()" ng-if="signup">Already have an account?</button>
 </form>

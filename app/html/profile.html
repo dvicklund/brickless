@@ -1,0 +1,56 @@
+<section>
+  <h2>{{currentUser.username}}'s Profile</h2>
+  <img src="" alt="Profile picture" />
+  <section ng-if="upload" class="imageupload"></section>
+  <button type="button" name="uploadToggleBtn" ng-click="showHideButton()">{{showHide}} Upload Form</button>
+  <h3>Proper Name:
+    <span contenteditable ng-model="currentUser.firstName"></span>
+    <span contenteditable ng-model="currentUser.lastName"></span>
+  </h3>
+  <h4>Residing in <span contenteditable ng-model="currentUser.locationCity"></span>, <span contenteditable ng-model="currentUser.locationState"></span></h4>
+  <h5>Last Login: {{currentUser.lastLogin}}</h5>
+  <h5>Phone Numbers:</h5>
+  <ul>
+    <li ng-repeat="number in currentUser.phoneNumbers">
+      <span contenteditable ng-model="number.name"></span>:
+      <span contenteditable ng-model="number.number"></span>
+    </li>
+    <li ng-if="editingNumber">
+      <label for="numberName">Name:
+        <input type="text" name="numberName" ng-model="newNumber.name" placeholder="Name"></input>
+      </label>
+      <label for="phoneNumber">Number:
+        <input type="text" name="phoneNumber" ng-model="newNumber.number" placeholder="Number"></input>
+      </label>
+    </li>
+    <li>
+      <button type="button" name="createNewNumber" ng-click="editNumber()">Add Number</button>
+      <button ng-if="editingNumber" type="button" name="cancelNumberEdit" ng-click="editingNumber = false">Cancel</button>
+    </li>
+  </ul>
+  <section id="userHistory">
+    <h2>Your History</h2>
+    <h3>Sales</h3>
+    <h4 id="noSalesMessage" ng-if="!currentUser.sellerHistory.length">You have no sales yet!</h4>
+    <ul id="sellerHistory" ng-if="currentUser.sellerHistory">
+      <li ng-repeat="sale in currentUser.sellerHistory">
+        <h5>Date: </h5><p>{{sale.saleDate}}</p>
+        <h5>Item Sold: </h5><p>{{sale.itemSold}}</p>
+        <h5>Buyer: </h5><p>
+          <!-- TODO: add buyer name? or another route to grab it-->
+        </p>
+      </li>
+    </ul>
+    <h3>Purchases</h3>
+    <h4 id="noPurchasesMessage" ng-if"!currentUser.buyerHistory.length">You have no purchases yet!</h4>
+    <ul id="buyerHistory" ng-if="currentUser.buyerHistory">
+      <li ng-repeat="purchase in currentuser.buyerHistory">
+        <h5>Date: </h5><p>{{purchase.purchaseDate}}</p>
+        <h5>Item Bought: </h5><p>{{purchase.itemBought}}</p>
+        <h5>Seller: </h5><p>
+          <!-- TODO: add seller name/email? or another route to grab it-->
+        </p>
+      </li>
+    </ul>
+  </section>
+</section>

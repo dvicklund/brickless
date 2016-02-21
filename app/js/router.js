@@ -3,11 +3,11 @@ module.exports = function(app) {
     $routeProvider
     .when('/', {
       templateUrl: 'html/login.html',
-      controller: 'PageCtrl'
+      controller: 'AuthCtrl'
     })
     .when('/login', {
       templateUrl: "html/login.html",
-      controller: "PageCtrl"
+      controller: "AuthCtrl"
     })
     .when('/shop', {
       templateUrl: 'html/shop.html',
@@ -26,6 +26,9 @@ module.exports = function(app) {
       // search results id/url?
       templateUrl: 'html/search-results.html',
       controller: 'searchCtrl'
+    .when('/profile', {
+      templateUrl: 'html/profile.html',
+      controller: 'ProfileCtrl'
     })
     // TODO: Controllers
     // .when('/pickups', {
@@ -42,4 +45,3 @@ module.exports = function(app) {
     // })
   }]);
 };
-

@@ -13,6 +13,12 @@ authRouter.post('/signup', bodyParser.json(), function(req, res) {
 			var user = new User();
 			user.auth.basic.username = req.body.auth.username;
 			user.username = req.body.auth.username;
+			user.firstName = req.body.firstName;
+			user.lastName = req.body.lastName;
+			user.email = req.body.email;
+			user.locationCity = req.body.locationCity;
+			user.locationState = req.body.locationState;
+
 			user.hashPW(req.body.auth.password);
 
 			user.save(function(err, savedUser) {
@@ -35,7 +41,7 @@ authRouter.post('/signin', basicHttp, bodyParser.json(), function(req, res) {
 		});
 	}
 
-	User.findOneAndUpdate({'auth.basic.username': req.auth.username}, {deviceId: req.body.deviceId}, {new: true}, function(err, foundUser) {
+	User.findOneAndUpdate({'auth.basic.username': req.auth.username}, {lastLogin: req.body.lastLogin}, {new: true}, function(err, foundUser) {
 		if(err) {
 			console.log('user lookup error');
 			console.log(err);
@@ -70,13 +76,38 @@ authRouter.post('/signin', basicHttp, bodyParser.json(), function(req, res) {
 authRouter.get('/user', decryptUser, function(req, res) {
 	res.json({
 		username: req.user.username,
+		firstName: req.user.firstName,
+		lastName: req.user.lastName,
+		email: req.user.email,
+		locationCity: req.user.locationCity,
+		locationState: req.user.locationState,
+		lastLogin: req.user.lastLogin,
+		addresses: req.user.addresses,
+		phoneNumbers: req.user.phoneNumbers,
+		sellerRatings: req.user.sellerRatings,
+		sellerHistory: req.user.sellerHistory,
+		buyerRatings: req.user.buyerRatings,
+		buyerHistory: req.user.buyerHistory,
 		id: req.user._id
 	});
 });
 
-authRouter.post('/user', bodyParser.json(), function(req, res) {
-	User.findOneAndUpdate({'_id': req.body.id}, req.body, {}, function(err, foundUser) {
+authRouter.get('/user/requests', decryptUser, function(req, res) {
+	res.json({
+		responseRequested: req.user.responseRequested,
+		receivedOffers: req.user.receivedOffers,
+		sentOffers: req.user.sentOffers
+	})
+})
+
+// Update user information
+authRouter.put('/user', bodyParser.json(), function(req, res) {
+	User.findOneAndUpdate({'_id': req.body.id}, req.body, {new: true}, function(err, foundUser) {
 		if(err) res.status(401).json({msg: 'Query unsuccessful!\n' + err});
-		res.json({msg: 'Query successful for ' + foundUser.username});
+		res.json({
+			user: foundUser,
+			msg: 'Successfully updated ' + foundUser.username + '\'s info'
+		});
+
 	});
 });

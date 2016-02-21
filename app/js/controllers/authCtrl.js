@@ -1,7 +1,25 @@
+var unitedStatesList = require(__dirname + '/../../data/unitedStatesList');
+
 module.exports = function(app) {
 
-  app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64',
-    function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64) {
+  app.controller('AuthCtrl', ['$rootScope', '$scope', '$timeout', '$location', '$http', '$cookies', '$base64', '$q',
+    function($rootScope, $scope, $timeout, $location, $http, $cookies, $base64, $q) {
+
+      $scope.stateList = unitedStatesList;
+
+      $scope.authErrors = [];
+      $scope.user = {};
+      $scope.signup = false;
+      $scope.token = '';
+      $scope.currentUser = null;
+
+      $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
+
+        if(prev && prev.$$route.originalPath === '/profile' && curr.locals.$scope.authErrors.indexOf('Must be logged in to view your account (duh)!') === -1) {
+          curr.locals.$scope.authErrors.push('Must be logged in to view your account (duh)!')
+        }
+      })
+
       function isLoggedIn() {
         if ($cookies.get('token'))
           return true;
@@ -13,12 +31,6 @@ module.exports = function(app) {
         if (!(isLoggedIn()))
           $location.path('/login');
       }
-
-      $scope.authErrors = [];
-      $scope.user = {};
-      $scope.signup = false;
-      $scope.token = '';
-      $scope.currentUser = null;
 
       // Switch between signup and login
       $scope.toggleSignup = function() {
@@ -65,9 +77,7 @@ module.exports = function(app) {
             method: 'POST',
             url: '/auth/signin',
             data: {
-              lat: $rootScope.lat,
-              lng: $rootScope.lng,
-              deviceId: $rootScope.deviceId
+              lastLogin: Date.now()
             },
             headers: {
               'Authorization': 'Basic ' + $base64.encode(user.auth.username + ':' + user.auth.password)

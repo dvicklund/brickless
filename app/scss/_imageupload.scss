@@ -1,0 +1,48 @@
+body {
+  background-color: #eeeeee;
+}
+
+.file-upload {
+  background-color: #ffffff;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.file-upload-btn{
+  width: 100%;
+  padding: 5px;
+  color: #fff;
+  background-color: olive;
+  border: 2px solid gray;
+}
+
+.file-upload-input{
+  display: none;
+}
+
+.image-upload-wrap {
+  margin-top: 20px;
+  border: 2px solid gray;
+}
+.image-title-wrap {
+  padding: 15px;
+  background-color: gray;
+  color: #ffffff;
+}
+
+.file-upload-image{
+  display: block;
+  max-height: 500px;
+  width: 100%;
+  margin: auto;
+  padding: 0;
+}
+
+.remove-image {
+  float: right;
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-weight: 700;
+}
