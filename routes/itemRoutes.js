@@ -112,7 +112,7 @@ itemRouter.get('/', function(req, res) {
 });
 
 // Used to create an item advertisement.
-// Successfully calling this route will create an itemDetail and a searchable truncated item.
+// Successfully calling this route will create an object for an item's details as well as the item's posting.
 itemRouter.post('/', function(req, res) {
 
 	User.findOne({'username': req.body.sellerUserName}, function(err, foundUser) {
@@ -120,7 +120,6 @@ itemRouter.post('/', function(req, res) {
 		else if (err) res.send(err);
 		else
 		{
-
 			var dateOfPost = Date.now(); // Get the date at the time of post.
 
 			var linkId = uuid.v4(); // Use this ID to link 
@@ -135,7 +134,9 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.postDate = dateOfPost;
 			itemDetail.sellerUserName = req.body.sellerUserName;
 			itemDetail.sellerRating = foundUser.sellerRating;
-			itemDetail.sellerTransHistory = 0; // Was an empty string.
+			if (!foundUser.sellerTransHistory || foundUser.sellerTransHistory === "") 
+				itemDetail.sellerTransHistory = 0; // Was an empty string.
+			else itemDetail.sellerTransHistory = foundUser.sellerTransHistory;
 			itemDetail.sellerAverageResponse = foundUser.averageResponseInMinutes;
 			itemDetail.sellerOtherItems = foundUser.itemsForSale;
 			itemDetail.latitude = foundUser.locationLng;
