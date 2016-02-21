@@ -142,7 +142,14 @@ nav {
 #submit-post {
   width: 300px;
 }
-
+// search results
+#search-results {
+  margin: 1rem;
+}
+.item-listing {
+  margin: 0.5em 1em;
+  width: 100%;
+}
 // media queries
 @media (max-width: 699px) {
   .mobile-hide {
@@ -163,6 +170,25 @@ nav {
   }
   #submit-post {
     width: 100%;
+  }
+  // search results
+  #search-results {
+    display:flex;
+    flex-direction: row;
+    .sidebar {
+      width: 250px;
+      height: 100%;
+    }
+    .results {
+      width: 500px;
+      height: 100%;
+      flex-grow: 1;
+      flex-shrink: 0;
+      flex-basis: 200px;
+      display:flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
   }
 }
 

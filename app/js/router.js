@@ -15,12 +15,17 @@ module.exports = function(app) {
     })
     .when('/post', {
       templateUrl: 'html/post.html',
-      controller: 'PageCtrl'
+      controller: 'postItemCtrl'
     })
     .when('/post-view', {
       // /postid ???
       templateUrl: 'html/post-view.html',
       controller: 'PageCtrl'
+    })
+    .when('/results', {
+      // search results id/url?
+      templateUrl: 'html/search-results.html',
+      controller: 'searchCtrl'
     })
     // TODO: Controllers
     // .when('/pickups', {
