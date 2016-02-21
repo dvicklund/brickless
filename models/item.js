@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 var ItemSchema = new Schema({
 	itemDetail: {type: Schema.Types.ObjectId, ref: "ItemDetail"},
+	linkId: String,
 	title: String,
 	displayPhoto: String,
 	askingPrice: Number,
