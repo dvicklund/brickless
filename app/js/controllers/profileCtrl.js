@@ -30,9 +30,27 @@ module.exports = function(app) {
         });
       };
 
-      $scope.editUser = function() {
-        
+      $scope.updateUser = function(callback) {
+        $http.defaults.headers.common.token = $cookies.get('token');
+        $http.put('/auth/user', $scope.currentUser)
+        .then(function(res) {
+          console.log(res);
+          callback(res, null);
+        }, function(err) {
+          callback(null, err);
+        })
       }
+
+      $scope.editUser = function() {
+
+      }
+
+      $scope.$on('editEnter', function(e) {
+        $scope.updateUser(function(res, err) {
+          if(err) console.log(err);
+          console.log(res);
+        })
+      })
 
       $scope.init();
   }]);

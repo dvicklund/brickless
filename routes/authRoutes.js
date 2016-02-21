@@ -102,7 +102,8 @@ authRouter.get('/user/requests', decryptUser, function(req, res) {
 
 // Update user information
 authRouter.put('/user', bodyParser.json(), function(req, res) {
-	User.findOneAndUpdate({'_id': req.body._id}, req.body, {new: true}, function(err, foundUser) {
+	console.log(req);
+	User.findOneAndUpdate({'_id': req.body.id}, req.body, {new: true}, function(err, foundUser) {
 		if(err) res.status(401).json({msg: 'Query unsuccessful!\n' + err});
 		res.json({
 			user: foundUser,

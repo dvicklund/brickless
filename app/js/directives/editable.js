@@ -17,7 +17,10 @@ module.exports = function(app) {
         })
 
         element.bind('keydown', function(e) {
-          if(e.keyCode === 13) e.preventDefault();
+          if(e.keyCode === 13) {
+            e.preventDefault();
+            scope.$broadcast('editEnter');
+          }
         })
       }
     }
