@@ -1,5 +1,5 @@
 module.exports = function(app) {
-  app.directive('contenteditable', function() {
+  app.directive('contenteditable', function($rootScope) {
     return {
       restrict: 'A',
       require: 'ngModel',
@@ -19,7 +19,7 @@ module.exports = function(app) {
         element.bind('keydown', function(e) {
           if(e.keyCode === 13) {
             e.preventDefault();
-            scope.$broadcast('editEnter');
+            $rootScope.$broadcast('editEnter');
           }
         })
       }

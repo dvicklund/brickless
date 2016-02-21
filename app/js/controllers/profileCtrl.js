@@ -2,8 +2,9 @@ module.exports = function(app) {
   app.controller('ProfileCtrl', ['$scope', '$location', '$http', '$cookies',
     function($scope, $location, $http, $cookies) {
       $scope.currentUser;
+      $scope.newNumber = {};
       $scope.upload = false;
-      $scope.editNumber = false;
+      $scope.editingNumber = false;
       $scope.showHide = "Show";
       $scope.errors = [];
 
@@ -42,12 +43,23 @@ module.exports = function(app) {
           callback(null, err);
         })
       }
-
-      $scope.editUser = function() {
-
+      
+      $scope.editNumber = function() {
+        if($scope.editingNumber) {
+          $scope.currentUser.phoneNumbers.push({
+            name: $scope.newNumber.name,
+            number: $scope.newNumber.number
+          });
+          $scope.updateUser(function(res, err) {
+            if(err) $scope.errors.push(err.msg);
+            $scope.newNumber = {};
+          });
+        }
+        $scope.editingNumber = !$scope.editingNumber;
       }
 
       $scope.$on('editEnter', function(e) {
+        console.log('editEnter');
         $scope.updateUser(function(res, err) {
           if(err) $scope.errors.push(err.msg);
         })
