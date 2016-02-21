@@ -80,6 +80,21 @@ itemRouter.delete('/:item_id', function(req, res) {
 		if (!itemDetail) res.status(404).json({msg: 'Item doesn\'t exist.'});
 		else if (err) res.send(err); 
 		else {
+			User.findOne({'username': itemDetail.sellerUserName}, function(err, foundUser) {
+				if (!foundUser) res.status(404).json({ msg: 'The user is missing for this item.'});
+				else if (err) res.send(err);
+				else {
+					foundUser.itemsForSale --;
+					foundUser.save(function(err){
+						if (err) {
+							res.send(err);
+							return;
+						}
+					});
+				}
+
+			});
+
 			Item.findOne({'linkId': itemDetail.linkId }, function(err, item) {
 				if (!item) res.status(404).json({ msg: 'Item not found.'});
 				else if (err) res.send(err);
@@ -124,6 +139,7 @@ itemRouter.post('/', function(req, res) {
 
 			var linkId = uuid.v4(); // Use this ID to link 
 
+
 			// Create the detailed post.
 			var itemDetail = new ItemDetail();
 			itemDetail.title = req.body.title;
@@ -138,7 +154,7 @@ itemRouter.post('/', function(req, res) {
 				itemDetail.sellerTransHistory = 0; // Was an empty string.
 			else itemDetail.sellerTransHistory = foundUser.sellerTransHistory;
 			itemDetail.sellerAverageResponse = foundUser.averageResponseInMinutes;
-			itemDetail.sellerOtherItems = foundUser.itemsForSale;
+			itemDetail.sellerOtherItems = foundUser.itemsForSale + 1;
 			itemDetail.latitude = foundUser.locationLng;
 			itemDetail.longitude = foundUser.locationLat;
 			itemDetail.morePhotos = req.body.morePhotos;
@@ -168,9 +184,14 @@ itemRouter.post('/', function(req, res) {
 				if (err) res.send(err);
 			});
 
-			foundUser.itemsForSale ++;
+			// Increment itemsForSale
+			if (!foundUser.itemsForSale)
+				foundUser.itemsForSale = 1;
+			else 
+				foundUser.itemsForSale ++;
+
 			foundUser.save(function(err){
-				// if (err) res.send(err); // I'm not sure if this will cause a problem if the response is already sent.
+				if (err) console.log(err);
 			});
 		}
 	});
