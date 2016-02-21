@@ -6,6 +6,11 @@
   <h3>Proper Name: <span contenteditable ng-model="currentUser.firstName"></span> <span contenteditable ng-model="currentUser.lastName"></span></h3>
   <h4>Residing in <span contenteditable ng-model="currentUser.locationCity"></span>, <span contenteditable ng-model="currentUser.locationState"></span></h4>
   <h5>Last Login: {{currentUser.lastLogin}}</h5>
+  <h5>Phone Numbers:</h5>
+  <ul>
+    <li ng-repeat="number in currentUser.phoneNumbers"><h6 contenteditable ng-model="number.name"></h6>: <span contenteditable ng-model="number.number"></span></li>
+    <li><button type="button" name="createNewNumber">Add Number</button></li>
+  </ul>
   <section id="userHistory">
     <h2>Your History</h2>
     <h3>Sales</h3>

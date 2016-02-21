@@ -3,6 +3,7 @@ module.exports = function(app) {
     function($scope, $location, $http, $cookies) {
       $scope.currentUser;
       $scope.upload = false;
+      $scope.editNumber = false;
       $scope.showHide = "Show";
       $scope.errors = [];
 
