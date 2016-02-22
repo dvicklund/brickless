@@ -59,16 +59,13 @@ module.exports = function(app) {
       }
 
       $scope.deleteNumber = function(num) {
-        console.log('deleting ' + num);
         $scope.currentUser.phoneNumbers.splice($scope.currentUser.phoneNumbers.indexOf(num), 1);
         $scope.updateUser(function(req, err) {
           if(err) $scope.errors.push(err.msg);
-          $scope.newNumber = {};
         })
       }
 
       $scope.$on('editEnter', function(e) {
-        console.log('editEnter');
         $scope.updateUser(function(res, err) {
           if(err) $scope.errors.push(err.msg);
         })
