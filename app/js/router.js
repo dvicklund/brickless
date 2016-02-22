@@ -26,6 +26,7 @@ module.exports = function(app) {
       // search results id/url?
       templateUrl: 'html/search-results.html',
       controller: 'searchCtrl'
+    })
     .when('/profile', {
       templateUrl: 'html/profile.html',
       controller: 'ProfileCtrl'

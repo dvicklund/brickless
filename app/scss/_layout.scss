@@ -158,7 +158,13 @@ header {
 }
 .item-listing {
   margin: 0.5em 1em;
-  width: 100%;
+  background-color: grey;
+  h3 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
 }
 // media queries
 @media (max-width: 699px) {

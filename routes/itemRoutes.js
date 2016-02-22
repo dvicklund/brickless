@@ -29,28 +29,28 @@ itemRouter.put('/:item_id', function(req, res)
 		{
 			Item.findOne({'linkId': itemDetail.linkId}, function(err, item)
 			{
-				if (!item) 
+				if (!item)
 				{
 					res.status(404).json({ msg: 'Item doesn\'t exist.' });
 					return;
 				}
 
-				if (req.body.title) 	  
+				if (req.body.title)
 				{
 					itemDetail.title = req.body.title; 
 					item.title = req.body.title;
 				}
 				if (req.body.description) itemDetail.description = req.body.description;
 				if (req.body.askingPrice)
-				{ 
-					itemDetail.askingPrice = req.body.askingPrice; 
-					item.askingPrice = req.body.askingPrice; 
+				{
+					itemDetail.askingPrice = req.body.askingPrice;
+					item.askingPrice = req.body.askingPrice;
 				}
 				if (req.body.postDate) {
 					  itemDetail.postDate = req.body.postDate;
 					  item.postDate = req.body.postDate;
 				}
-				if (req.body.displayPhoto) item.displayPhoto = req.body.displayPhoto;	
+				if (req.body.displayPhoto) item.displayPhoto = req.body.displayPhoto;
 				if (req.body.morePhotos)  itemDetail.morePhotos = req.body.morePhotos;
 				if (req.body.preferredMethodOfContact) itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
 
@@ -78,7 +78,7 @@ itemRouter.put('/:item_id', function(req, res)
 itemRouter.delete('/:item_id', function(req, res) {
 	ItemDetail.findById(req.params.item_id, function(err, itemDetail) {
 		if (!itemDetail) res.status(404).json({msg: 'Item doesn\'t exist.'});
-		else if (err) res.send(err); 
+		else if (err) res.send(err);
 		else {
 			User.findOne({'username': itemDetail.sellerUserName}, function(err, foundUser) {
 				if (!foundUser) res.status(404).json({ msg: 'The user is missing for this item.'});
@@ -137,7 +137,7 @@ itemRouter.post('/', function(req, res) {
 		{
 			var dateOfPost = Date.now(); // Get the date at the time of post.
 
-			var linkId = uuid.v4(); // Use this ID to link 
+			var linkId = uuid.v4(); // Use this ID to link
 
 
 			// Create the detailed post.
@@ -150,7 +150,7 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.postDate = dateOfPost;
 			itemDetail.sellerUserName = req.body.sellerUserName;
 			itemDetail.sellerRating = foundUser.sellerRating;
-			if (!foundUser.sellerTransHistory || foundUser.sellerTransHistory === "") 
+			if (!foundUser.sellerTransHistory || foundUser.sellerTransHistory === "")
 				itemDetail.sellerTransHistory = 0; // Was an empty string.
 			else itemDetail.sellerTransHistory = foundUser.sellerTransHistory;
 			itemDetail.sellerAverageResponse = foundUser.averageResponseInMinutes;
@@ -187,7 +187,7 @@ itemRouter.post('/', function(req, res) {
 			// Increment itemsForSale
 			if (!foundUser.itemsForSale)
 				foundUser.itemsForSale = 1;
-			else 
+			else
 				foundUser.itemsForSale ++;
 
 			foundUser.save(function(err){
