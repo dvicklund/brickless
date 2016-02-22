@@ -71,6 +71,10 @@ module.exports = function(app) {
         })
       })
 
+      $scope.$on('phoneEnter', function(e) {
+        $scope.editNumber();
+      })
+
       $scope.init();
   }]);
 }

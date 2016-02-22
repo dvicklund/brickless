@@ -1,8 +1,5 @@
 module.exports = function(app) {
-    //inject angular file upload directives and services.
-  var app = angular.module('fileUpload', ['ngFileUpload']);
-
-  app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
+  app.controller('imageuploadCtrl', ['$scope', 'Upload', '$timeout', 'ngFileUpload', function ($scope, Upload, $timeout, ngFileUpload) {
       $scope.uploadPic = function(file) {
       file.upload = Upload.upload({
         url: 'https://angular-file-upload-cors-srv.appspot.com/upload',

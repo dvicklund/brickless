@@ -4,5 +4,5 @@ module.exports = function(app) {
   require('./storeCtrl')(app);
   require('./postItemCtrl')(app);
   require('./profileCtrl')(app);
-    require('./imageuploadCtrl')(app);
+  require('./imageuploadCtrl')(app);
 }
