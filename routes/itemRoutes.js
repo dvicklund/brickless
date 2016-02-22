@@ -152,7 +152,7 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.sellerRating = foundUser.sellerRating;
 			if (!foundUser.sellerTransHistory || foundUser.sellerTransHistory === "") 
 				itemDetail.sellerTransHistory = 0; // Was an empty string.
-			else itemDetail.sellerTransHistory = foundUser.sellerTransHistory;
+			else itemDetail.sellerTransHistory = foundUser.sellerHistory;
 			itemDetail.sellerAverageResponse = foundUser.averageResponseInMinutes;
 			itemDetail.sellerOtherItems = foundUser.itemsForSale + 1;
 			itemDetail.latitude = foundUser.locationLng;

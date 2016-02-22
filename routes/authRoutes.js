@@ -18,7 +18,16 @@ authRouter.post('/signup', bodyParser.json(), function(req, res) {
 			user.email = req.body.email;
 			user.locationCity = req.body.locationCity;
 			user.locationState = req.body.locationState;
-
+			user.itemsForSale = 0;
+			user.locationLng = 0;
+			user.locationLat = 0;
+			user.sellerHistory = 0;
+			user.buyerHistory = 0;
+			user.sellerRating = 0;
+			user.buyerRating = 0;
+			user.itemsForSale = 0;
+			user.averageResponseInMinutes = 0;
+  
 			user.hashPW(req.body.auth.password);
 
 			user.save(function(err, savedUser) {
