@@ -3,7 +3,8 @@ module.exports = function(app) {
     return {
       restrict: 'C',
       replace: true,
+      controller: 'js/controllers/imageuploadCtrl.js',
       templateUrl: 'html/imageupload.html'
     }
-  });
+  })
 }
