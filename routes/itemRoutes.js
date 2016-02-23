@@ -119,10 +119,15 @@ itemRouter.delete('/:item_id', function(req, res) {
 // This route gets all lightweight items.
 // This would eventually be built out for searching.
 itemRouter.get('/', function(req, res) {
-	Item.find(function(err, items){
-		if (err) res.send(err);
+	var querystrang = req.query.query;
 
-		res.json(items);
+	Item.find({'title': querystrang}, function(err, items) {
+		if (err) res.send(err);
+		else
+		{
+
+			res.json(items);
+		}
 	});
 });
 
