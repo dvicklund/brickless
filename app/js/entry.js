@@ -1,11 +1,13 @@
 require('angular-route');
 require('angular-cookies');
 require('angular-base64');
+require('ng-file-upload');
 
 var app = angular.module('bricks', [
   'ngRoute',
   'ngCookies',
-  'base64'
+  'base64',
+  'ngFileUpload'
 ]);
 
 require('./controllers/controllers')(app);

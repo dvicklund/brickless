@@ -43,7 +43,7 @@ module.exports = function(app) {
           callback(null, err);
         })
       }
-      
+
       $scope.editNumber = function() {
         if($scope.editingNumber) {
           $scope.currentUser.phoneNumbers.push({
@@ -58,11 +58,21 @@ module.exports = function(app) {
         $scope.editingNumber = !$scope.editingNumber;
       }
 
+      $scope.deleteNumber = function(num) {
+        $scope.currentUser.phoneNumbers.splice($scope.currentUser.phoneNumbers.indexOf(num), 1);
+        $scope.updateUser(function(req, err) {
+          if(err) $scope.errors.push(err.msg);
+        })
+      }
+
       $scope.$on('editEnter', function(e) {
-        console.log('editEnter');
         $scope.updateUser(function(res, err) {
           if(err) $scope.errors.push(err.msg);
         })
+      })
+
+      $scope.$on('phoneEnter', function(e) {
+        $scope.editNumber();
       })
 
       $scope.init();
