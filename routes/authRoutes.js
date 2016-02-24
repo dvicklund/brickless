@@ -29,7 +29,7 @@ authRouter.post('/signup', bodyParser.json(), function(req, res) {
 			user.buyerRating = 0;
 			user.itemsForSale = 0;
 			user.averageResponseInMinutes = 0;
-  
+
 			user.hashPW(req.body.auth.password);
 
 			user.save(function(err, savedUser) {
