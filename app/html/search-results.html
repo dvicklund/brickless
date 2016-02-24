@@ -1,4 +1,4 @@
-<section id="search-results" data-ng-controller="searchController">
+<section id="search-results" data-ng-controller="searchCtrl">
   <section class="sidebar">
     <form action="">
       <fieldset>
@@ -17,27 +17,15 @@
       </fieldset>
     </form>
   </section>
-  <section class="results">
-    <div class="item-listing">
-      <img class="results-thumb" src="" alt="">
-      <h3 class="item-name">Toaster</h3>
-      <p class="description">Toast Toast Toast</p>
-      <p class="price">$50</p>
-      <div class="star-rating">****</div>
-    </div>
-    <div class="item-listing">
-      <img class="results-thumb" src="" alt="">
-      <h3 class="item-name">Toaster</h3>
-      <p class="description">Toast Toast Toast</p>
-      <p class="price">$50</p>
-      <div class="star-rating">****</div>
-    </div>
-    <div class="item-listing">
-      <img class="results-thumb" src="" alt="">
-      <h3 class="item-name">Toaster</h3>
-      <p class="description">Toast Toast Toast</p>
-      <p class="price">$50</p>
-      <div class="star-rating">****</div>
+  <section class="results" data-ng-init="getAllItems()">
+    <div class="item-listing" data-ng-repeat="item in items">
+      <img class="results-thumb" src="{{item.displayPhoto}}" alt="">
+      <h3 class="item-name">
+        <a href="">{{item.title}}</a>
+      </h3>
+      <p class="description">{{item.itemDetail}}</p>
+      <p class="price">${{item.askingPrice}}</p>
+      <div class="star-rating">{{item.sellerRating}}</div>
     </div>
   </section>
 </section>
