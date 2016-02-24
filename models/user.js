@@ -17,6 +17,7 @@ var userSchema = new mongoose.Schema({
     lng: Number
   }],
   phoneNumbers: [{name: String, number: String}],
+  zip: Number,
   locationCity: String,
   locationState: String,
   locationLat: Number,

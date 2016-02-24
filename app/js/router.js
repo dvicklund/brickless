@@ -33,6 +33,10 @@ module.exports = function(app) {
       templateUrl: 'html/profile.html',
       controller: 'ProfileCtrl'
     })
+    .when('/imageupload', {
+      templateUrl: 'html/imageupload.html',
+      controller: 'imageuploadCtrl'
+    })
     // TODO: Controllers
     // .when('/pickups', {
     //   templateUrl: 'html/pickups.html',

@@ -40,7 +40,10 @@ itemRouter.put('/:item_id', function(req, res)
 					itemDetail.title = req.body.title; 
 					item.title = req.body.title;
 				}
-				if (req.body.description) itemDetail.description = req.body.description;
+				if (req.body.description) {
+					item.description = req.body.description;
+					itemDetail.description = req.body.description;
+				}
 				if (req.body.askingPrice)
 				{
 					itemDetail.askingPrice = req.body.askingPrice;
@@ -119,11 +122,26 @@ itemRouter.delete('/:item_id', function(req, res) {
 // This route gets all lightweight items.
 // This would eventually be built out for searching.
 itemRouter.get('/', function(req, res) {
-	Item.find(function(err, items){
-		if (err) res.send(err);
 
-		res.json(items);
-	});
+	if (!req.query.q || req.query.q === "") {
+		Item.find(function(err, items) {
+			if (err) res.send(err);
+
+			res.json(items);
+		});
+	}
+	else {
+
+		var searchterm = new RegExp(req.query.q, 'i');
+
+		Item.find({$or:[
+			{'title'		: searchterm},
+			{'description'	: searchterm}]}, function(err, items) {
+			if (err) res.send(err);
+
+			res.json(items);
+		});
+	}
 });
 
 // Used to create an item advertisement.
@@ -173,6 +191,7 @@ itemRouter.post('/', function(req, res) {
 			item.detailId = itemDetail._id; // Keeping detail ID for fast lookup.
 			item.linkId = linkId; // We can index on the linkId once we create the index on the DB.
 			item.title = req.body.title;
+			item.description = req.body.description;
 			item.displayPhoto = req.body.displayPhoto;
 			item.askingPrice = req.body.askingPrice;
 			item.postDate = dateOfPost;

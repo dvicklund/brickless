@@ -18,6 +18,8 @@ authRouter.post('/signup', bodyParser.json(), function(req, res) {
 			user.email = req.body.email;
 			user.locationCity = req.body.locationCity;
 			user.locationState = req.body.locationState;
+			user.zip = req.body.zip;
+
 			user.itemsForSale = 0;
 			user.locationLng = 0;
 			user.locationLat = 0;
@@ -27,7 +29,7 @@ authRouter.post('/signup', bodyParser.json(), function(req, res) {
 			user.buyerRating = 0;
 			user.itemsForSale = 0;
 			user.averageResponseInMinutes = 0;
-  
+
 			user.hashPW(req.body.auth.password);
 
 			user.save(function(err, savedUser) {
@@ -90,6 +92,7 @@ authRouter.get('/user', decryptUser, function(req, res) {
 		email: req.user.email,
 		locationCity: req.user.locationCity,
 		locationState: req.user.locationState,
+		zip: req.user.zip,
 		lastLogin: req.user.lastLogin,
 		addresses: req.user.addresses,
 		phoneNumbers: req.user.phoneNumbers,
