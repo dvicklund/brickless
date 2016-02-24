@@ -25,10 +25,10 @@
     "angular": "^1.5.0",
     "angular-base64": "^2.0.5",
     "angular-cookies": "^1.5.0",
-    "angular-file-upload": "^2.2.0",
     "angular-route": "^1.5.0",
     "bcrypt": "^0.8.5",
     "body-parser": "^1.14.2",
+    "connect-multiparty": "^2.0.0",
     "eat": "^0.1.1",
     "express": "^4.13.4",
     "gulp": "^3.9.0",
@@ -40,6 +40,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "mongoose": "^4.4.1",
+    "ng-file-upload": "^12.0.1",
     "webpack-stream": "^3.1.0"
   },
   "devDependencies": {}
