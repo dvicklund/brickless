@@ -14,7 +14,10 @@ module.exports = function(app) {
       $scope.currentUser = null;
 
       $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
-        if(prev && prev.$$route.originalPath === '/profile' && curr.locals.$scope.authErrors.indexOf('Must be logged in to view your account (duh)!') === -1) {
+        if (prev &&
+            prev.$$route.originalPath === '/profile' &&
+            curr.locals.$scope.authErrors &&
+            curr.locals.$scope.authErrors.indexOf('Must be logged in to view your account (duh)!') === -1) {
           curr.locals.$scope.authErrors.push('Must be logged in to view your account (duh)!')
         }
       })
@@ -65,7 +68,7 @@ module.exports = function(app) {
               $scope.getUser();
               $scope.user = {};
               $scope.signup = false;
-              $location.path('/home');
+              $location.path('/');
             }, function(err) {
               $scope.authErrors.push(err.data.msg);
               console.log(err.data);
@@ -85,7 +88,7 @@ module.exports = function(app) {
             $cookies.put('token', res.data.token);
             $scope.getUser();
             $scope.user = {};
-            $location.path('/home');
+            $location.path('/');
           }, function(err) {
             $scope.authErrors.push(err.data.msg);
             console.log(err.data);

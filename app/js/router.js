@@ -2,16 +2,16 @@ module.exports = function(app) {
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
-      templateUrl: 'html/login.html',
-      controller: 'AuthCtrl'
+      templateUrl: 'html/home.html',
+      controller: 'PageCtrl'
     })
     .when('/login', {
       templateUrl: "html/login.html",
       controller: "AuthCtrl"
     })
     .when('/shop', {
-      templateUrl: 'html/shop.html',
-      controller: 'PageCtrl'
+      templateUrl: 'html/store.html',
+      controller: 'StoreCtrl'
     })
     .when('/post', {
       templateUrl: 'html/post.html',
