@@ -14,7 +14,6 @@ module.exports = function(app) {
       $scope.currentUser = null;
 
       $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
-
         if(prev && prev.$$route.originalPath === '/profile' && curr.locals.$scope.authErrors.indexOf('Must be logged in to view your account (duh)!') === -1) {
           curr.locals.$scope.authErrors.push('Must be logged in to view your account (duh)!')
         }
