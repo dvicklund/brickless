@@ -6,8 +6,15 @@ module.exports = function(app) {
     };
 
     $scope.submitForm = function(newItem){
+
+
       console.log(newItem);
-      $http.post('/item', newItem);
+      $http.post('/item', newItem)
+      .success(function (data, status, headers, config){
+        console.log('success' + data);
+        })
+
+
 
     };
 
