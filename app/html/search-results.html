@@ -1,13 +1,14 @@
 <section id="search-results" data-ng-controller="searchCtrl">
   <section class="sidebar">
-    <form action="">
+    <form ng-submit="getItems()">
       <fieldset>
         <label for="keywords">Keywords</label>
-        <input type="text" name="keywords">
+        <input type="text" ng-model="keywords" name="keywords">
         <label for="">Min-price</label>
-        <input type="tel">
+        <input type="tel" ng-model="minPrice">
         <label for="">Max-price</label>
-        <input type="tel">
+        <input type="tel" ng-model="maxPrice">
+        <input type="submit" name="searchBtn" value="Search">
         <label for="sort">Sort by</label>
         <select name="" id="">
           <option value="date-sort">Date</option>
