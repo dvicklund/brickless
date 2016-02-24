@@ -179,11 +179,10 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.noOfInquiries = 0; // Starts at zero at the time of posting.
 			itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
 
-			itemDetail.save(function(err)
+			itemDetail.save(function(err, savedItemDetail)
 			{
 				if (err) res.send(err);
-
-					res.status(201).json({ msg: 'Item created with ID ' + itemDetail._id });
+				else res.status(201).json({ msg: 'Item created with ID ' + savedItemDetail._id });
 			});
 
 			// Create the light-weight version for searching that links to the details.
