@@ -24,7 +24,8 @@
       <i ng-show="imageUploadForm.file.$error.required">*required</i><br>
       <i ng-show="imageUploadForm.file.$error.maxSize">File too large
           {{errorFiles[0].size / 1000000|number:1}}MB: max 2M</i>
-      <img ng-show="imageUploadForm.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
+      <img ng-show="imageUploadForm.file.$valid" ngf-thumbnail="picFile" class="thumb">
+      <button ng-click="picFile = null" ng-show="picFile">Remove</button>
       <br>
       <button ng-disabled="!imageUploadForm.$valid"
               ng-click="uploadPic(picFile)">Submit</button>

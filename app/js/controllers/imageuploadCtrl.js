@@ -2,7 +2,7 @@ module.exports = function(app) {
   app.controller('imageuploadCtrl', ['$scope', 'Upload', '$timeout', function ($scope, Upload, $timeout) {
     $scope.uploadPic = function(file) {
       file.upload = Upload.upload({
-        url: '/pic/upload',
+        url: '/img/upload',
         data: {file: file, username: $scope.username},
       });
 
