@@ -7,10 +7,12 @@ process.env.APP_SECRET = process.env.APP_SECRET || 'suchmysterynoonewilleverknow
 
 var authRouter = require(__dirname + '/routes/authRoutes');
 var itemRouter = require(__dirname + '/routes/itemRoutes');
+var imgRouter = require(__dirname + '/routes/imgRoutes');
 
 app.use(bodyParser.json());
 app.use('/item', itemRouter);
 app.use('/auth', authRouter);
+app.use('/img', imgRouter);
 
 var router = express.Router();
 
