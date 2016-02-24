@@ -1,6 +1,14 @@
 module.exports = function(app) {
-  app.controller('searchController', function($scope, $location, $http) {
+  app.controller('searchCtrl', ['$scope', '$http', function($scope, $http) {
 
+    $scope.items =[];
 
-  });
+    $scope.getAllItems = function() {
+      $http.get('/item').success(function(response){
+        $scope.items = response;
+      });
+    };
+
+  }]);
 }
+

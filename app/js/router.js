@@ -10,7 +10,9 @@ module.exports = function(app) {
       controller: "AuthCtrl"
     })
     .when('/shop', {
-      templateUrl: 'html/shop.html',
+      // templateUrl: 'html/shop.html',
+      // temporarily changed to results
+      templateUrl: 'html/search-results.html',
       controller: 'PageCtrl'
     })
     .when('/post', {

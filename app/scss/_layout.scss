@@ -158,13 +158,22 @@ header {
 }
 .item-listing {
   margin: 0.5em 1em;
-  background-color: grey;
-  h3 {
-    margin: 0;
-  }
+  background-color: #CCC;
   p {
     margin: 0;
+    font-size: 1.5rem;
   }
+}
+.item-name {
+  margin: 0;
+  font-size: 2rem;
+}
+.results-thumb {
+  float: left;
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+  margin: 0 10px 10px 0;
 }
 // media queries
 @media (max-width: 699px) {

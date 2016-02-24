@@ -1,0 +1,11 @@
+<section class="results" data-ng-controller="searchCtrl" data-ng-init="getAllItems()">
+  <div class="item-listing" data-ng-repeat="item in items">
+    <img class="results-thumb" src="{{item.displayPhoto}}" alt="">
+    <h3 class="item-name">
+      <a href="">{{item.title}}</a>
+    </h3>
+    <p class="description">{{item.itemDetail}}</p>
+    <p class="price">${{item.askingPrice}}</p>
+    <div class="star-rating">{{item.sellerRating}}</div>
+  </div>
+</section>
