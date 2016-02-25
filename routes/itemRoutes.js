@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var uuid = require('node-uuid');
 var express = require('express');
 var Item = require(__dirname + '/../models/item');
 var ItemDetail = require(__dirname + '/../models/itemDetail');
@@ -27,7 +26,7 @@ itemRouter.put('/:item_id', function(req, res)
 		else if (!itemDetail) res.status(404).json({ msg: 'Item doesn\'t exist.' });
 		else
 		{
-			Item.findOne({'linkId': itemDetail.linkId}, function(err, item)
+			Item.findOne({'itemDetail': itemDetail._id}, function(err, item)
 			{
 				if (!item)
 				{
@@ -98,7 +97,7 @@ itemRouter.delete('/:item_id', function(req, res) {
 
 			});
 
-			Item.findOne({'linkId': itemDetail.linkId }, function(err, item) {
+			Item.findOne({'itemDetail': itemDetail._id }, function(err, item) {
 				if (!item) res.status(404).json({ msg: 'Item not found.'});
 				else if (err) res.send(err);
 				else {
@@ -155,13 +154,9 @@ itemRouter.post('/', function(req, res) {
 		{
 			var dateOfPost = Date.now(); // Get the date at the time of post.
 
-			var linkId = uuid.v4(); // Use this ID to link
-
-
 			// Create the detailed post.
 			var itemDetail = new ItemDetail();
 			itemDetail.title = req.body.title;
-			itemDetail.linkId = linkId;
 			itemDetail.displayPhoto = req.body.displayPhoto;
 			itemDetail.description = req.body.description;
 			itemDetail.askingPrice = req.body.askingPrice;
@@ -188,7 +183,6 @@ itemRouter.post('/', function(req, res) {
 			// Create the light-weight version for searching that links to the details.
 			var item = new Item();
 			item.itemDetail = itemDetail._id; // Keeping detail ID for fast lookup.
-			item.linkId = linkId; // We can index on the linkId once we create the index on the DB.
 			item.title = req.body.title;
 			item.description = req.body.description;
 			item.displayPhoto = req.body.displayPhoto;
