@@ -6,4 +6,5 @@ module.exports = function(app) {
   require('./profileCtrl')(app);
   require('./searchCtrl')(app);
   require('./imageuploadCtrl')(app);
+  require('./singleItemCtrl')(app);
 }
