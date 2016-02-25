@@ -11,6 +11,7 @@ module.exports = function(app) {
         if(!$scope.currentUser) $location.path('/login');
       });
     }
+
     $scope.getUser = function(callback) {
       $http.defaults.headers.common.token = $cookies.get('token');
       $http.get('/auth/user')
@@ -23,6 +24,7 @@ module.exports = function(app) {
         callback(null, err);
       });
     };
+    
     $scope.init();
 
     $scope.submitForm = function(newItem){
@@ -38,4 +40,3 @@ module.exports = function(app) {
 
   }]);
 }
-
