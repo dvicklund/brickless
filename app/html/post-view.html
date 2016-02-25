@@ -1,8 +1,8 @@
 <!-- dummy data for styling purposes -->
-<section class="single-post-view" >
+<section class="single-post-view" data-ng-controller="singleItemCtrl" data-ng-init="getItem()">
   <!-- data model info needed -->
   <div class="single-post_item-info">
-    <h1 class="item-title">Test Item Name</h1>
+    <h1 class="item-title">Test {{item.title}}</h1>
     <img class="item-photo" src="img/test.jpg">
     <div class="mobile-justified">
       <h3>
