@@ -166,7 +166,10 @@ header {
   text-align: center;
 }
 .item-photo {
-  width: 100%;
+  max-width: 75%;
+  max-height: 400px;
+  margin: 1em auto;
+  display: block;
 }
 .single-post_asking-label {
   display: block;
@@ -190,7 +193,7 @@ header {
 .about-seller {
   position: relative;
   margin: 20px auto;
-  width: 400px;
+  width: 300px;
   align-items: center;
   height: 385px;
 }
@@ -200,7 +203,7 @@ header {
   border: 1px solid black;
   border-radius: 100%;
   position: absolute;
-  left: 25%;
+  left: 50px;
   background-image: url("http://img08.deviantart.net/5337/i/2011/191/e/4/wolverine_by_wulfwood04-d3ln5hf.jpg");
   background-repeat: no-repeat;
   background-position: 50%;
