@@ -187,7 +187,7 @@ itemRouter.post('/', function(req, res) {
 
 			// Create the light-weight version for searching that links to the details.
 			var item = new Item();
-			item.detailId = itemDetail._id; // Keeping detail ID for fast lookup.
+			item.itemDetail = itemDetail._id; // Keeping detail ID for fast lookup.
 			item.linkId = linkId; // We can index on the linkId once we create the index on the DB.
 			item.title = req.body.title;
 			item.description = req.body.description;
