@@ -13,7 +13,7 @@ itemRouter.get('/:item_id', function(req, res)
 {
 	ItemDetail.findById(req.params.item_id, function(err, item) {
 		if (!item) res.status(404).json({msg: 'Item doesn\'t exist.'});
-		else 
+		else
 		{
 			User.findOne({'username': item.sellerUserName}, function(err, foundUser) {
 				if (!foundUser) res.status(404).json({ msg: 'The user is missing for this item.'});
@@ -24,6 +24,7 @@ itemRouter.get('/:item_id', function(req, res)
 						id: item._id,
 						sellerUserName: item.sellerUserName,
 						sellerEmail: foundUser.email,
+						sellerPhoto: foundUser.displayPhoto,
 						locationCity: foundUser.locationCity,
 						locationState: foundUser.locationState,
 						zip: foundUser.zip,

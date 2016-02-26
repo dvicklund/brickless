@@ -9,24 +9,24 @@
         <label for="">Max-price</label>
         <input type="tel" ng-model="maxPrice">
         <input type="submit" name="searchBtn" value="Search">
-        <label for="sort">Sort by</label>
-        <select name="" id="">
-          <option value="date-sort">Date</option>
-          <option value="distance-sort">Distance</option>
-          <option value="price-sort">Price</option>
-        </select>
       </fieldset>
     </form>
+    <!-- sort still not working -->
+    <fieldset>
+      <label for="sort">Sort by</label>
+        <select ng-model="sortView" data-ng-options="option.name for option in sortViewOptions track by option.value">
+        </select>
+    </fieldset>
   </section>
   <section class="results" data-ng-init="getAllItems()">
-    <div class="item-listing" data-ng-repeat="item in items">
+    <div class="item-listing" data-ng-repeat="item in items | orderBy:sortView">
       <img class="results-thumb" src="{{item.displayPhoto}}" alt="">
       <h3 class="item-name">
-        <a href="#/item/{{item.itemDetail}}">{{item.title}}</a>
+        <a href="#/item/{{item.itemDetail}}">{{item.title | limitTo:40}}...</a>
       </h3>
       <!-- possibly add media query to show/hide descriptions with different text limits.  -->
       <p>{{item.description | limitTo:40}}...</p>
-      <p class="price">${{item.askingPrice}}</p>
+      <p class="price">{{item.askingPrice | currency}}</p>
       <div class="star-rating">{{item.sellerRating}}</div>
     </div>
   </section>

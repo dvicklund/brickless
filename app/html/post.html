@@ -3,7 +3,7 @@
     <fieldset class="item-info left">
       <h2>What are you selling?</h2>
       <label for="item-name">Item Name</label>
-      <input data-ng-model="newItem.title" id="item-name" type="text" placeholder="Item Name">
+      <input data-ng-model="newItem.title" id="item-name" type="text" data-ng-minlength="3" data-ng-maxlength="80" placeholder="Item Name">
       <label for="item-price">Asking Price</label>
       <input data-ng-model="newItem.askingPrice" id="item-price" type="tel" placeholder="$0.00">
       <label for="item-description">Item Description</label>
@@ -11,7 +11,7 @@
       <!-- need photo upload method -->
       <label for="item-photo">Upload Photo</label>
       <imageupload></imageupload>
-      <input data-ng-model="newItem.displayPhoto" id="item-photo" type="text" placeholder="Upload Photo - Method needed">
+      <!-- <input data-ng-model="newItem.displayPhoto" id="item-photo" type="text" placeholder="Upload Photo - Method needed"> -->
 
       <button class="mobile-hide" type="submit" id="submit-post">Post Now</button>
     </fieldset>

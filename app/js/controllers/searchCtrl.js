@@ -5,6 +5,14 @@ module.exports = function(app) {
     $scope.keywords = '';
     $scope.minPrice = 0;
     $scope.maxPrice = 0;
+    // sorting still not working
+    $scope.sortViewOptions = [
+      {name: 'Date old - new', value: 'postDate'},
+      // {name: 'Date old - new', value: '"postDate"  : !reverse'},
+      {name: 'Price', value: 'askingPrice'},
+      // {name: 'Price', value: '"askingPrice" : reverse'}
+    ];
+    $scope.sortView = $scope.sortViewOptions[0];
 
     $scope.getItems = function() {
 
