@@ -23,6 +23,12 @@ module.exports = function(app) {
         var daysAgo = Math.round(Math.abs((today.getTime() - fixDate)/(oneDay)));
         // response time needs to be built out, but it's not relevent now.
         $scope.countDays = daysAgo;
+
+        // image
+        console.log($scope.item.morePhotos);
+        console.log($scope.item.morePhotos[0]);
+        $scope.showPhoto = $scope.item.morePhotos[0];
+
       });
     };
 
