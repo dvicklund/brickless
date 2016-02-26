@@ -80,7 +80,8 @@ itemRouter.put('/:item_id', function(req, res)
 					  item.postDate = req.body.postDate;
 				}
 				if (req.body.displayPhoto) item.displayPhoto = req.body.displayPhoto;
-				if (req.body.morePhotos)  itemDetail.morePhotos = req.body.morePhotos;
+				itemDetail.morePhotos.push(req.body.displayPhoto);
+				// if (req.body.morePhotos)  itemDetail.morePhotos = req.body.morePhotos;
 				if (req.body.preferredMethodOfContact) itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
 
 				itemDetail.save(function(err) {
@@ -197,7 +198,7 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.sellerOtherItems = foundUser.itemsForSale + 1;
 			itemDetail.latitude = foundUser.locationLng;
 			itemDetail.longitude = foundUser.locationLat;
-			itemDetail.morePhotos = req.body.morePhotos;
+			itemDetail.morePhotos.push(req.body.displayPhoto);
 			itemDetail.noOfInquiries = 0; // Starts at zero at the time of posting.
 			itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
 
