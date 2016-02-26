@@ -13,6 +13,7 @@ authRouter.post('/signup', bodyParser.json(), function(req, res) {
 			var user = new User();
 			user.auth.basic.username = req.body.auth.username;
 			user.username = req.body.auth.username;
+			user.displayPhoto = '';
 			user.firstName = req.body.firstName;
 			user.lastName = req.body.lastName;
 			user.email = req.body.email;
@@ -89,6 +90,7 @@ authRouter.get('/user', decryptUser, function(req, res) {
 		username: req.user.username,
 		firstName: req.user.firstName,
 		lastName: req.user.lastName,
+		displayPhoto: req.user.displayPhoto,
 		email: req.user.email,
 		locationCity: req.user.locationCity,
 		locationState: req.user.locationState,

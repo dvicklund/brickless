@@ -11,9 +11,11 @@ module.exports = function(app) {
 		      file.upload.then(function (response) {
 		        $timeout(function () {
 
-		          console.log(response.data.path);
-		          $scope.image = response.data.path;
-		          $scope.newItem.displayPhoto = response.data.path;
+	        	if ($scope.currentUser)
+	          		$scope.currentUser.displayPhoto = response.data.path;
+	          
+		        if ($scope.newItem)
+		          	$scope.newItem.displayPhoto = response.data.path;
 
 		        });
 		      }, function (response) {
