@@ -21,7 +21,7 @@ module.exports = function(app) {
         // var daysAgo = today - $scope.item.postDate;
 
         // response time needs to be built out, but it's not relevent now.
-
+        console.log($scope.item.morePhotos[0]);
 
       });
     };
