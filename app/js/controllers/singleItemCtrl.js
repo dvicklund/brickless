@@ -14,10 +14,9 @@ module.exports = function(app) {
         user = $scope.item.sellerUserName;
 
         // other items doesn't include this one, items for sale should be total items
-        $scope.itemsForSale = $scope.item.sellerOtherItems + 1;
+        // $scope.itemsForSale = $scope.item.sellerOtherItems + 1;
 
-        // will list 0 if no previous transactions are logged
-        $scope.transactions = 0 + $scope.item.sellerTransHistory;
+
         var oneDay = 24*60*60*1000;
         var fixDate = Date.parse($scope.item.postDate);
         var daysAgo = Math.round(Math.abs((today.getTime() - fixDate)/(oneDay)));
