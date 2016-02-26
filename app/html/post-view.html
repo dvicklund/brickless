@@ -2,7 +2,7 @@
   <div class="single-post_item-info">
     <h1 class="item-title">{{item.title}}</h1>
     <!-- needs to be connected to uploaded photos -->
-    <img class="item-photo" src="{{item.displayPhoto}}">
+    <img class="item-photo" src="{{showPhoto}}">
     <div class="mobile-justified">
       <h3>
         <span class="single-post_asking-label">Asking</span>
@@ -13,13 +13,12 @@
       </form>
     </div>
     <div class="single-post_about-item">
-      <!-- this whole block needs to be connected. Lat/Long, city, date -->
       <h5 class="mobile-justified">
-        <span class="about-item_val">City, State</span>
+        <span class="about-item_val">{{item.locationCity}}, {{item.locationState}}</span>
         <span class="mobile-break-pipe">|</span>
         <span class="about-item_val">26 miles away</span>
         <span class="mobile-break-pipe">|</span>
-        <span class="about-item_val"> Posted NaN days ago</span>
+        <span class="about-item_val"> Posted {{countDays}} days ago</span>
       </h5>
       <!--  -->
     </div>
@@ -35,7 +34,7 @@
       <h3>{{item.sellerUserName}}</h3>
       <div class="seller-history mobile-justified">
         <h5>
-          <span class="seller-history_val">{{transactions}}</span>
+          <span class="seller-history_val">{{item.sellerTransHistory}}</span>
           <span class="seller-history_label">transactions</span>
         </h5>
         <h5>
@@ -43,14 +42,14 @@
           <span class="seller-history_label">response time</span>
         </h5>
         <h5>
-          <span class="seller-history_val">{{itemsForSale}}</span>
+          <span class="seller-history_val">{{item.itemsForSale}}</span>
           <span class="seller-history_label">items for sale</span>
         </h5>
       </div>
     </div>
     <div class="about-seller_contact">
       <!-- how to retrieve email address? -->
-      <a href="">Contact the Seller</a>
+      <a href="mailto:{{item.sellerEmail}}">Contact the Seller</a>
     </div>
   </div>
 </section>
