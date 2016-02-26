@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var uuid = require('node-uuid');
 var express = require('express');
 var Item = require(__dirname + '/../models/item');
 var ItemDetail = require(__dirname + '/../models/itemDetail');
@@ -14,7 +13,35 @@ itemRouter.get('/:item_id', function(req, res)
 {
 	ItemDetail.findById(req.params.item_id, function(err, item) {
 		if (!item) res.status(404).json({msg: 'Item doesn\'t exist.'});
-		else res.json(item);
+		else 
+		{
+			User.findOne({'username': item.sellerUserName}, function(err, foundUser) {
+				if (!foundUser) res.status(404).json({ msg: 'The user is missing for this item.'});
+				else if (err) res.send(err);
+				else {
+
+					res.json({
+						id: item._id,
+						sellerUserName: item.sellerUserName,
+						sellerEmail: foundUser.email,
+						locationCity: foundUser.locationCity,
+						locationState: foundUser.locationState,
+						zip: foundUser.zip,
+						displayPhoto: item.displayPhoto,
+						title: item.title,
+						description: item.description,
+						askingPrice: item.askingPrice,
+						postDate: item.postDate,
+						itemsForSale: foundUser.itemsForSale,
+						sellerRating: foundUser.sellerRating,
+						sellerTransHistory: foundUser.sellerHistory,
+						sellerAverageResponse: foundUser.averageResponseInMinutes,
+						morePhotos: item.morePhotos,
+						noOfInquiries: item.noOfInquiries,
+						preferredMethodOfContact: item.preferredMethodOfContact});
+				}
+			});
+		}
 	});
 });
 
@@ -27,7 +54,7 @@ itemRouter.put('/:item_id', function(req, res)
 		else if (!itemDetail) res.status(404).json({ msg: 'Item doesn\'t exist.' });
 		else
 		{
-			Item.findOne({'linkId': itemDetail.linkId}, function(err, item)
+			Item.findOne({'itemDetail': itemDetail._id}, function(err, item)
 			{
 				if (!item)
 				{
@@ -54,7 +81,8 @@ itemRouter.put('/:item_id', function(req, res)
 					  item.postDate = req.body.postDate;
 				}
 				if (req.body.displayPhoto) item.displayPhoto = req.body.displayPhoto;
-				if (req.body.morePhotos)  itemDetail.morePhotos = req.body.morePhotos;
+				itemDetail.morePhotos.push(req.body.displayPhoto);
+				// if (req.body.morePhotos)  itemDetail.morePhotos = req.body.morePhotos;
 				if (req.body.preferredMethodOfContact) itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
 
 				itemDetail.save(function(err) {
@@ -98,7 +126,7 @@ itemRouter.delete('/:item_id', function(req, res) {
 
 			});
 
-			Item.findOne({'linkId': itemDetail.linkId }, function(err, item) {
+			Item.findOne({'itemDetail': itemDetail._id }, function(err, item) {
 				if (!item) res.status(404).json({ msg: 'Item not found.'});
 				else if (err) res.send(err);
 				else {
@@ -155,13 +183,9 @@ itemRouter.post('/', function(req, res) {
 		{
 			var dateOfPost = Date.now(); // Get the date at the time of post.
 
-			var linkId = uuid.v4(); // Use this ID to link
-
-
 			// Create the detailed post.
 			var itemDetail = new ItemDetail();
 			itemDetail.title = req.body.title;
-			itemDetail.linkId = linkId;
 			itemDetail.displayPhoto = req.body.displayPhoto;
 			itemDetail.description = req.body.description;
 			itemDetail.askingPrice = req.body.askingPrice;
@@ -175,7 +199,7 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.sellerOtherItems = foundUser.itemsForSale + 1;
 			itemDetail.latitude = foundUser.locationLng;
 			itemDetail.longitude = foundUser.locationLat;
-			itemDetail.morePhotos = req.body.morePhotos;
+			itemDetail.morePhotos.push(req.body.displayPhoto);
 			itemDetail.noOfInquiries = 0; // Starts at zero at the time of posting.
 			itemDetail.preferredMethodOfContact = req.body.preferredMethodOfContact;
 
@@ -187,8 +211,7 @@ itemRouter.post('/', function(req, res) {
 
 			// Create the light-weight version for searching that links to the details.
 			var item = new Item();
-			item.detailId = itemDetail._id; // Keeping detail ID for fast lookup.
-			item.linkId = linkId; // We can index on the linkId once we create the index on the DB.
+			item.itemDetail = itemDetail._id; // Keeping detail ID for fast lookup.
 			item.title = req.body.title;
 			item.description = req.body.description;
 			item.displayPhoto = req.body.displayPhoto;

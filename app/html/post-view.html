@@ -1,53 +1,55 @@
-<!-- dummy data for styling purposes -->
-<section class="single-post-view" >
-  <!-- data model info needed -->
+<section class="single-post-view" data-ng-controller="singleItemCtrl" data-ng-init="getItem()">
   <div class="single-post_item-info">
-    <h1 class="item-title">Test Item Name</h1>
-    <img class="item-photo" src="img/test.jpg">
-    <h3>
-      <span class="sigle-post_label">Asking</span>
-      <span class="single-post_asking-price">$2.99</span>
-    </h3>
-    <p class="single-post_description">This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. This is a scantron. </p>
-  </div>
-  <div class="single-post_about-item">
-    <h2>About this item</h2>
-    <h3>
-      <span class="single-post_val">5</span>
-      <span class="sigle-post_label"> days old</span>
-    </h3>
-    <h3>
-      <span class="single-post_val">26</span>
-      <span class="sigle-post_label"> miles away</span>
-    </h3>
-    <h3>
-      <span class="single-post_val">5</span>
-      <span class="sigle-post_label"> recent bids</span>
-    </h3>
-  </div>
-  <!--  new controller or {{post.seller.???}} -->
-  <div class="single-post_about-seller">
-    <div class="single-post_leftside">
-      <h2>About this seller</h2>
-      <h3>Joe Postguy</h3>
-      <!-- placeholder star copied from Amazon  -->
-      <div><i class="a-icon a-icon-star a-star-4"><span class="a-icon-alt"></span></i></div>
+    <h1 class="item-title">{{item.title}}</h1>
+    <!-- needs to be connected to uploaded photos -->
+    <img class="item-photo" src="{{showPhoto}}">
+    <div class="mobile-justified">
+      <h3>
+        <span class="single-post_asking-label">Asking</span>
+        <span class="single-post_asking-price">{{item.askingPrice | currency}}</span>
+      </h3>
+      <form action="">
+        <button>Make an offer</button>
+      </form>
     </div>
-    <div class="single-post_rightside">
-      <h3>
-        <span class="single-post_val">10</span>
-        <span class="sigle-post_label">total transactions</span>
-      </h3>
-      <h3>
-        <span class="sigle-post_label">usually responds within</span>
-        <span class="single-post_val">12</span>
-        <span class="sigle-post_label">hours</span>
-      </h3>
-      <h3>
-        <span class="sigle-post_label">selling</span>
-        <span class="single-post_val">9</span>
-        <span class="sigle-post_label">other items</span>
-      </h3>
+    <div class="single-post_about-item">
+      <h5 class="mobile-justified">
+        <span class="about-item_val">{{item.locationCity}}, {{item.locationState}}</span>
+        <span class="mobile-break-pipe">|</span>
+        <span class="about-item_val">26 miles away</span>
+        <span class="mobile-break-pipe">|</span>
+        <span class="about-item_val"> Posted {{countDays}} days ago</span>
+      </h5>
+      <!--  -->
+    </div>
+    <p class="single-post_description">{{item.description}}</p>
+  </div>
+
+  <div class="about-seller">
+    <div class="user-photo"></div>
+    <div class="about-seller-details">
+      <!-- placeholder star copied from Amazon. Star rating API needs to be added  -->
+      <div><i class="a-icon a-icon-star a-star-4">*****<span class="a-icon-alt"></span></i></div>
+      <!--  -->
+      <h3>{{item.sellerUserName}}</h3>
+      <div class="seller-history mobile-justified">
+        <h5>
+          <span class="seller-history_val">{{item.sellerTransHistory}}</span>
+          <span class="seller-history_label">transactions</span>
+        </h5>
+        <h5>
+          <span class="seller-history_val">N/A</span>
+          <span class="seller-history_label">response time</span>
+        </h5>
+        <h5>
+          <span class="seller-history_val">{{item.itemsForSale}}</span>
+          <span class="seller-history_label">items for sale</span>
+        </h5>
+      </div>
+    </div>
+    <div class="about-seller_contact">
+      <!-- how to retrieve email address? -->
+      <a href="mailto:{{item.sellerEmail}}">Contact the Seller</a>
     </div>
   </div>
 </section>

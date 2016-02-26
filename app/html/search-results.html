@@ -22,9 +22,10 @@
     <div class="item-listing" data-ng-repeat="item in items">
       <img class="results-thumb" src="{{item.displayPhoto}}" alt="">
       <h3 class="item-name">
-        <a href="">{{item.title}}</a>
+        <a href="#/item/{{item.itemDetail}}">{{item.title}}</a>
       </h3>
-      <p class="description">{{item.itemDetail}}</p>
+      <!-- possibly add media query to show/hide descriptions with different text limits.  -->
+      <p>{{item.description | limitTo:40}}...</p>
       <p class="price">${{item.askingPrice}}</p>
       <div class="star-rating">{{item.sellerRating}}</div>
     </div>
