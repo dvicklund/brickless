@@ -105,5 +105,9 @@ module.exports = function(app) {
         $location.path('/login');
         $cookies.remove('token');
       };
+
+      $scope.goto = function(path) {
+        $location.path(path);
+      }
   }]);
 };
