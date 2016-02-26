@@ -21,7 +21,7 @@ imageRouter.post('/upload', function(req, res) {
 
         // uuid is for generating unique filenames. 
         var fileName = uuid.v4() + extension;
-        var destPath = __dirname + '/../images/' + fileName;
+        var destPath = __dirname + '/../' + fileName;
 
         // Server side file type checker.
         if (contentType !== 'image/png' && contentType !== 'image/jpeg') {

@@ -17,7 +17,7 @@ app.use('/img', imgRouter);
 var router = express.Router();
 
 app.use(express.static(__dirname + '/build'));
-app.use(express.static(__dirname + '/images'));
+app.use(express.static(__dirname + '/'));
 
 var port = process.env.PORT || 3000;
 
