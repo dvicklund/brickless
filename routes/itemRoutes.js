@@ -13,7 +13,34 @@ itemRouter.get('/:item_id', function(req, res)
 {
 	ItemDetail.findById(req.params.item_id, function(err, item) {
 		if (!item) res.status(404).json({msg: 'Item doesn\'t exist.'});
-		else res.json(item);
+		else 
+		{
+			User.findOne({'username': item.sellerUserName}, function(err, foundUser) {
+				if (!foundUser) res.status(404).json({ msg: 'The user is missing for this item.'});
+				else if (err) res.send(err);
+				else {
+
+					res.json({
+						id: item._id,
+						sellerUserName: item.sellerUserName,
+						sellerEmail: foundUser.email,
+						locationCity: foundUser.locationCity,
+						locationState: foundUser.locationState,
+						zip: foundUser.zip,
+						displayPhoto: item.displayPhoto,
+						title: item.title,
+						description: item.description,
+						askingPrice: item.askingPrice,
+						postDate: item.postDate,
+						sellerRating: foundUser.sellerRating,
+						sellerTransHistory: foundUser.sellerHistory,
+						sellerAverageResponse: foundUser.averageResponseInMinutes,
+						morePhotos: item.morePhotos,
+						noOfInquiries: item.noOfInquiries,
+						preferredMethodOfContact: item.preferredMethodOfContact});
+				}
+			});
+		}
 	});
 });
 
