@@ -35,3 +35,6 @@ node_modules
 # Webpack-build files and directories
 app/css
 build
+
+# images folder
+images

@@ -10,7 +10,10 @@ module.exports = function(app) {
 
 		      file.upload.then(function (response) {
 		        $timeout(function () {
-		          file.result = response.data;
+
+		          console.log(response.data.path);
+		          $scope.image = response.data.path;
+
 		        });
 		      }, function (response) {
 		        if (response.status > 0)

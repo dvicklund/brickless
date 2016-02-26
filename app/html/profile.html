@@ -1,6 +1,6 @@
 <section>
   <h2>{{currentUser.username}}'s Profile</h2>
-  <img src="" alt="Profile picture" />
+  <img ng-src="{{image}}" alt="Profile picture" />
   <section ng-if="upload" class="imageupload"></section>
   <button type="button" name="uploadToggleBtn" ng-click="showHideButton()">{{showHide}} Upload Form</button>
   <imageupload></imageupload>
