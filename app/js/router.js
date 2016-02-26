@@ -24,6 +24,10 @@ module.exports = function(app) {
       templateUrl: 'html/post-view.html',
       controller: 'PageCtrl'
     })
+    .when('/item/:item_id',  {
+      templateUrl: 'html/post-view.html',
+      controller: 'PageCtrl'
+    })
     .when('/results', {
       // search results id/url?
       templateUrl: 'html/search-results.html',

@@ -9,7 +9,7 @@ module.exports = function(app) {
     $scope.getItems = function() {
 
     	var path = '/item?';
-		
+
 		path += 'q=' + $scope.keywords;
 		path += '&min=' + $scope.minPrice;
 
@@ -28,4 +28,5 @@ module.exports = function(app) {
 
   }]);
 }
+
 
