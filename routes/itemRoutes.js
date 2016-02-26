@@ -32,6 +32,7 @@ itemRouter.get('/:item_id', function(req, res)
 						description: item.description,
 						askingPrice: item.askingPrice,
 						postDate: item.postDate,
+						itemsForSale: foundUser.itemsForSale,
 						sellerRating: foundUser.sellerRating,
 						sellerTransHistory: foundUser.sellerHistory,
 						sellerAverageResponse: foundUser.averageResponseInMinutes,
