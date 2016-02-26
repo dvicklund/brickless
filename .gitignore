@@ -37,4 +37,5 @@ app/css
 build
 
 # images folder
-images
+*.jpg
+*.png
