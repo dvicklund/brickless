@@ -22,7 +22,7 @@
     <div class="item-listing" data-ng-repeat="item in items">
       <img class="results-thumb" src="{{item.displayPhoto}}" alt="">
       <h3 class="item-name">
-        <a href="#/item/{{item.itemDetail}}">{{item.title}}</a>
+        <a href="#/item/{{item.itemDetail}}">{{item.title | limitTo:40}}...</a>
       </h3>
       <!-- possibly add media query to show/hide descriptions with different text limits.  -->
       <p>{{item.description | limitTo:40}}...</p>
