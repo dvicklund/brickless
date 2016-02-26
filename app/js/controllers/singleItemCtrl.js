@@ -20,7 +20,6 @@ module.exports = function(app) {
         $scope.transactions = 0 + $scope.item.sellerTransHistory;
         var oneDay = 24*60*60*1000;
         var fixDate = Date.parse($scope.item.postDate);
-        console.log(fixDate);
         var daysAgo = Math.round(Math.abs((today.getTime() - fixDate)/(oneDay)));
         // response time needs to be built out, but it's not relevent now.
         $scope.countDays = daysAgo;

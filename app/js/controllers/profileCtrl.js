@@ -35,12 +35,18 @@ module.exports = function(app) {
 
       $scope.updateUser = function(callback) {
         $http.defaults.headers.common.token = $cookies.get('token');
+
         $http.put('/auth/user', $scope.currentUser)
         .then(function(res) {
           console.log(res);
-          callback(res, null);
+          
+          if (callback) // THIS IS A HACK - I added this so I could call it from profile.html
+            callback(res, null);
+
         }, function(err) {
-          callback(null, err);
+          
+          if (callback) // THIS IS A HACK - same as above.
+            callback(null, err);
         })
       }
 
