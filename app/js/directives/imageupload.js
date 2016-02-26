@@ -13,6 +13,7 @@ module.exports = function(app) {
 
 		          console.log(response.data.path);
 		          $scope.image = response.data.path;
+		          $scope.newItem.displayPhoto = response.data.path;
 
 		        });
 		      }, function (response) {
