@@ -35,7 +35,7 @@
   <section id="userItems">
     <h2>Items</h2>
     <div class="item-listing" data-ng-repeat="item in items | orderBy:sortView">
-      <img class="results-thumb" src="{{item.displayPhoto}}" alt="">
+      <img class="results-thumb" src="{{item.morePhotos[0]}}" alt="">
       <h3 class="item-name">
         <a href="/item/{{item.itemDetail}}">{{item.title | limitTo:40}}...</a>
       </h3>
