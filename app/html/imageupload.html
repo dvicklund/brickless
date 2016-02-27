@@ -1,7 +1,7 @@
 <section>
   <form name="imageUploadForm">
     <fieldset>
-      <legend>Upload your image</legend>
+      <legend>Upload Image</legend>
       <br>Photo:
       <input type="file" ngf-select ng-model="picFile" name="file"
              accept="image/*" ngf-max-size="2MB" required
@@ -13,7 +13,7 @@
       <button ng-click="picFile = null" ng-show="picFile">Remove</button>
       <br>
       <button ng-disabled="!imageUploadForm.$valid"
-              ng-click="uploadPic(picFile)">Submit</button>
+              ng-click="uploadPic(picFile)">Upload</button>
       <span class="progress" ng-show="picFile.progress >= 0">
         <div style="width:{{picFile.progress}}%"
             ng-bind="picFile.progress + '%'"></div>

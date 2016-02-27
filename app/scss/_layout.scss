@@ -78,8 +78,21 @@ header {
   }
 }
 
+// Profile
+.profile-page {
+  width: 500px;
+}
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 1px solid black;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: cover;
+}
 // posting items
-#post-an-item {
+#post-an-item, .profile-page {
   margin: 1em;
   h3 {
     font-size: 2rem;
