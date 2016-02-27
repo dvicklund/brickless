@@ -28,6 +28,10 @@ module.exports = function(app) {
     	});
     };
 
+    $scope.sort = function(option) {
+
+    }
+
     $scope.getAllItems = function() {
       $http.get('/item').success(function(response){
         $scope.items = response;
@@ -36,5 +40,3 @@ module.exports = function(app) {
 
   }]);
 }
-
-

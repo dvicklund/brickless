@@ -7,6 +7,7 @@ module.exports = function(app) {
       $scope.editingNumber = false;
       $scope.showHide = "Show";
       $scope.errors = [];
+      $scope.items = [];
 
       $scope.init = function() {
         if(!$scope.currentUser) $scope.getUser(function(res, err) {
@@ -26,6 +27,14 @@ module.exports = function(app) {
         .then(function(res) {
           $scope.currentUser = res.data;
           $scope.currentUser.lastLogin = (new Date($scope.currentUser.lastLogin)).toLocaleString();
+          $scope.currentUser.items.forEach(function(curr, i, arr) {
+            $http.get('/item/' + curr).then(function(res) {
+              $scope.items.push(res.data);
+              console.log(res.data);
+            }, function(err) {
+              console.log(err);
+            })
+          })
           callback(res, null);
         }, function(err) {
           console.log(err);
@@ -39,12 +48,12 @@ module.exports = function(app) {
         $http.put('/auth/user', $scope.currentUser)
         .then(function(res) {
           console.log(res);
-          
+
           if (callback) // THIS IS A HACK - I added this so I could call it from profile.html
             callback(res, null);
 
         }, function(err) {
-          
+
           if (callback) // THIS IS A HACK - same as above.
             callback(null, err);
         })

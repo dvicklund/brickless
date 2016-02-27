@@ -227,11 +227,13 @@ itemRouter.post('/', function(req, res) {
 			});
 
 			// Increment itemsForSale
-			if (!foundUser.itemsForSale)
+			if (!foundUser.itemsForSale) {
 				foundUser.itemsForSale = 1;
-			else
+				foundUser.items.push(item.itemDetail);
+			} else {
 				foundUser.itemsForSale ++;
-
+				foundUser.items.push(item.itemDetail);
+			}
 			foundUser.save(function(err){
 				if (err) console.log(err);
 			});

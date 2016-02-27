@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var eat = require('eat');
+var Item = require(__dirname + '/item');
 
 var userSchema = new mongoose.Schema({
   username: String,
@@ -28,6 +29,7 @@ var userSchema = new mongoose.Schema({
   sellerHistory: Number,
   buyerHistory: Number,
   itemsForSale: Number,
+  items: [{type: mongoose.Schema.Types.ObjectId, ref: 'Item'}],
   averageResponseInMinutes: Number,
   lastLogin: {
     type: Date,

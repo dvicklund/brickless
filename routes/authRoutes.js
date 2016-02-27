@@ -102,7 +102,8 @@ authRouter.get('/user', decryptUser, function(req, res) {
 		sellerHistory: req.user.sellerHistory,
 		buyerRatings: req.user.buyerRatings,
 		buyerHistory: req.user.buyerHistory,
-		id: req.user._id
+		id: req.user._id,
+		items: req.user.items
 	});
 });
 
