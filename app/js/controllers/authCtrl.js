@@ -22,6 +22,15 @@ module.exports = function(app) {
         }
       })
 
+      $rootScope.$on('$routeChangeSuccess', function(evt, curr, prev) {
+        if (prev &&
+            prev.$$route.originalPath === '/post' &&
+            curr.locals.$scope.authErrors &&
+            curr.locals.$scope.authErrors.indexOf('Must be logged in to post items!') === -1) {
+          curr.locals.$scope.authErrors.push('Must be logged in to post items!')
+        }
+      })
+
       function isLoggedIn() {
         if ($cookies.get('token'))
           return true;
@@ -105,5 +114,9 @@ module.exports = function(app) {
         $location.path('/login');
         $cookies.remove('token');
       };
+
+      $scope.goto = function(path) {
+        $location.path(path);
+      }
   }]);
 };
