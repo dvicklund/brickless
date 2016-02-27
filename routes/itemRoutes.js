@@ -207,7 +207,7 @@ itemRouter.post('/', function(req, res) {
 			itemDetail.save(function(err, savedItemDetail)
 			{
 				if (err) res.send(err);
-				else res.status(201).json({ msg: 'Item created with ID ' + savedItemDetail._id });
+				else res.status(201).json({ msg: 'Item created with ID ' + savedItemDetail._id, id: savedItemDetail._id});
 			});
 
 			// Create the light-weight version for searching that links to the details.

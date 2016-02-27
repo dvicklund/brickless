@@ -33,7 +33,8 @@ module.exports = function(app) {
 
       $http.post('/item', newItem)
       .success(function (data, status, headers, config){
-        console.log('success' + data);
+        console.log(data);
+        $location.path('/item/' + data.id);
       })
     };
 
